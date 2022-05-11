@@ -3077,6 +3077,10 @@ input[type="button"].btn-block {
 .custom-radio .custom-control-input:disabled:checked ~ .custom-control-label::before {
   background-color: rgba(0, 123, 255, 0.5); }
 
+.swal2-styled.swal2-confirm{
+  background-color: #20bdfe !important;
+}
+
 .custom-switch {
   padding-left: 2.25rem; }
   .custom-switch .custom-control-label::before {
@@ -8419,6 +8423,35 @@ h1, h2, h3, h4, h5,
         .hero-wrap.hero-wrap-2 .slider-text {
           text-align: center;
           height: 400px !important; } }
+
+  .hero-wrap.hero-wrap-3 {
+    height: 230px !important;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: top center; }
+    @media (max-width: 1199.98px) {
+      .hero-wrap.hero-wrap-3 {
+        background-position: top center !important; } }
+    .hero-wrap.hero-wrap-3 .slider-text {
+      height: 230px !important; }
+      @media (max-width: 991.98px) {
+        .hero-wrap.hero-wrap-3 .slider-text {
+          text-align: center;
+          height: 230px !important; } }
+
+.nav-pills .nav-link {
+  color: #6c757d;
+}
+.img-circle {
+  border-radius: 50%;
+}
+
+.profile-user-img {
+  border: 3px solid #adb5bd;
+  margin: 0 auto;
+  padding: 3px;
+  width: 100px;
+}
 
 .slider-text .breadcrumbs {
   font-size: 12px;

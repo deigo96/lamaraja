@@ -14,6 +14,7 @@
                                     </div>
                                     <div class="form-group">
                                         <input type="email" name="email" class="form-control email" placeholder="Masukan e-mail">
+                                        <?php echo form_error('email') ?>
                                     </div>
                                     <div class="form-group">
                                         <input type="password" name="password" id="password" class="form-control password" placeholder="Masukan Password">
@@ -22,7 +23,7 @@
                                         <input type="password" name="confirmPassword" class="form-control confirmPassword" placeholder="Masukan Ulang Password">
                                     </div>
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-block py-3 px-5" id="button">Daftar</button>
+                                        <button type="button" class="btn btn-primary btn-block py-3 px-5" id="buttonRegister">Daftar</button>
                                     </div>
                                     <span>Sudah punya akun? <a href="<?php echo base_url('Login') ?>" style="color: #d1ff5f;">Masuk</a></span>
                                 </form>

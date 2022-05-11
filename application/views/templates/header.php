@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>Skillhunt - Free Bootstrap 4 Template by Colorlib</title>
+        <title>LamarAja.com</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         
@@ -9,7 +9,6 @@
 
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/open-iconic-bootstrap.min.css">
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/animate.css">
-        
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/owl.carousel.min.css">
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/owl.theme.default.min.css">
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/magnific-popup.css">

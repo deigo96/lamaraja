@@ -20,23 +20,36 @@ class Register extends CI_Controller {
     {
         $this->form_validation->set_error_delimiters('', '');
         $this->form_validation->set_rules('nama','Nama Lengkap', 'required');
-        $this->form_validation->set_rules('email','Alamat Email','required|valid_email|is_unique[users.email]');
-        $status = "";
+        $this->form_validation->set_rules('email','Alamat Email','required|valid_email|is_unique[users.email]',[
+            'is_unique' => "Email sudah digunakan"
+        ]);
+        $status = false;
         if ($this->form_validation->run() == FALSE) {
-            echo json_encode($status);
+            // var_dump(form_error('email'));
         } 
         else {
-        // To who are you wanting with input value such to insert as 
+            $passwordHash           = $this->input->post('password');
             $data['nama_user']      = $this->input->post('nama');
             $data['email']          = $this->input->post('email');
-            $data['password']       = $this->input->post('password');
+            $data['password']       = hash('md5', $passwordHash);
             $data['tanggal_daftar'] = date('dmYHi');
-        // Then pass $data  to Modal to insert bla bla!!
-            // $register = $this->M_register->register($data);
-            // if(!$register){
-            //     echo json_encode($status);
-            // }
-            echo json_encode("Sukses");
+
+            $register = $this->M_register->register($data);
+            if(!$register){
+                echo json_encode($status);
+            }
+            $status = true;
+        }
+        echo json_encode($status);
+    }
+
+    public function checkEmail()
+    {
+        $email = $this->input->post('email');
+        if($this->M_register->checkEmail($email) > 0){
+            echo 'false';
+        }else{
+            echo 'true';
         }
     }
 }

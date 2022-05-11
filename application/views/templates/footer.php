@@ -79,6 +79,7 @@
 
 
     <script src="<?php echo base_url('assets/') ?>js/jquery.min.js"></script>
+    <script src="<?php echo base_url('assets/js/bootbox.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/') ?>js/jquery-migrate-3.0.1.min.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/popper.min.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/bootstrap.min.js"></script>
@@ -93,6 +94,8 @@
     <script src="<?php echo base_url('assets/') ?>js/main.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/jquery.validate.min.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/auth.js"></script>
+    <script src="<?php echo base_url('assets/') ?>js/custom.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </body>
 </html>

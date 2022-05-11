@@ -11,4 +11,10 @@ class M_register extends CI_Model {
     {
         return $this->db->insert('users', $data);
     }
+
+    public function checkEmail($email)
+    {
+        $query = $this->db->query("SELECT users.email FROM users WHERE email = '$email' ");
+        return $query->num_rows();
+    }
 }
