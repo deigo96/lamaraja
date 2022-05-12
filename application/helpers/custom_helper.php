@@ -15,7 +15,7 @@
         $CI = get_instance();
         $CI->load->library('session');
 
-        if($CI->session->userdata('adminLog')){
+        if($CI->session->userdata('id_admin')){
             return TRUE;
         }
         else{
