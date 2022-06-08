@@ -7,24 +7,24 @@
                     <div class="ftco-search my-md-5">
                         <div class="row">
                             <div class="col-md-6 order-md-last offset-md-3">
-                                <form action="<?php echo base_url('Login/auth') ?>" method="POST" id="login-form" class="p-5 contact-form" style="background: linear-gradient(to right, #207dff 0%, #a16ae8 100%)">
-                                    <p class="text-left" style="font-size: 25px">Sign-in</p>
+                                <form action="<?php echo base_url('perusahaan/login_perusahaan/auth') ?>" method="POST" id="login-form-perusahaan" class="p-5 contact-form" style="background: linear-gradient(to right, #207dff 0%, #a16ae8 100%)">
+                                    <p class="text-left" style="font-size: 25px">Login Perusahaan</p>
                                     <div class="login-error">
                                         <?php 
                                             if ($this->session->flashdata('error')) 
-                                                echo "<label class='error' for='login'>Email atau password salah</label>";
+                                                echo "<label class='error' for='login'>".$this->session->flashdata('error')."</label>";
                                         ?>
                                     </div>
                                     <div class="form-group">
-                                        <input type="email" name="email" class="form-control email" placeholder="Masukan e-mail">
+                                        <input type="email" name="email" class="form-control email" placeholder="E-mail">
                                     </div>
                                     <div class="form-group">
-                                        <input type="password" name="password" class="form-control password" placeholder="Masukan Password">
+                                        <input type="password" name="password" class="form-control password" placeholder="Password">
                                     </div>
                                     <div class="form-group">
                                         <button type="submit" id="buttonLogin" class="btn btn-primary btn-block py-3 px-5">Masuk</button>
                                     </div>
-                                    <span>Belum punya akun? <a href="<?php echo base_url('Register') ?>" style="color: #d1ff5f;">Daftar</a></span>
+                                    <span>Belum punya akun? <a href="<?php echo base_url('perusahaan/register_perusahaan') ?>" style="color: #d1ff5f;">Daftar</a></span>
                                 </form>
                             </div>
                         </div>

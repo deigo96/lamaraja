@@ -16,7 +16,7 @@
                                             <span class="flaticon-worldwide"></span>
                                         </div>
                                         <div class="desc text-left">
-                                            <strong class="number" data-number="46">0</strong>
+                                            <strong class="number" data-number="<?php echo $wilayah ?>">0</strong>
                                             <span>Countries</span>
                                         </div>
                                     </div>
@@ -29,7 +29,7 @@
                                             <span class="flaticon-visitor"></span>
                                         </div>
                                         <div class="desc text-left">
-                                            <strong class="number" data-number="450">0</strong>
+                                            <strong class="number" data-number="<?php echo $perusahaan ?>">0</strong>
                                             <span>Companies</span>
                                         </div>
                                     </div>
@@ -42,8 +42,8 @@
                                             <span class="flaticon-resume"></span>
                                         </div>
                                         <div class="desc text-left">
-                                            <strong class="number" data-number="80000">0</strong>
-                                            <span>Active Employees</span>
+                                            <strong class="number" data-number="<?php echo $user ?>">0</strong>
+                                            <span>Pelamar aktif</span>
                                         </div>
                                     </div>
                                 </div>
@@ -77,11 +77,16 @@
                                                                 <option value="">Freelance</option>
                                                                 <option value="">Internship</option>
                                                                 <option value="">Temporary</option>
+                                                                <option value="">Temporary</option>
+                                                                <option value="">Temporary</option>
+                                                                <option value="">Temporary</option>
+                                                                <option value="">Temporary</option>
                                                                 </select>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                                <!-- <select name="" id="" class="chosen-select"></select> -->
                                                 <div class="col-md mr-md-2">
                                                     <div class="form-group">
                                                         <div class="form-field">
@@ -176,34 +181,30 @@
         <div class="row">
             <div class="col-md-3 ftco-animate">
                 <ul class="category text-center">
-                    <li><a href="#">Web Development <br><span class="number">354</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Graphic Designer <br><span class="number">143</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Multimedia <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Advertising <br><span class="number">90</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    <?php foreach($jabatan[0] as $j1) { ?>
+                        <li><a href="#"><?php echo $j1->nama ?> <br><span class="number"><?php echo $j1->jumlah ?></span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <div class="col-md-3 ftco-animate">
                 <ul class="category text-center">
-                    <li><a href="#">Education &amp; Training <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">English <br><span class="number">200</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Social Media <br><span class="number">300</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Writing <br><span class="number">150</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    <?php foreach($jabatan[1] as $j1) { ?>
+                        <li><a href="#"><?php echo $j1->nama ?> <br><span class="number"><?php echo $j1->jumlah ?></span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <div class="col-md-3 ftco-animate">
                 <ul class="category text-center">
-                    <li><a href="#">PHP Programming <br><span class="number">400</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Project Management <br><span class="number">100</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Finance Management <br><span class="number">222</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Office &amp; Admin <br><span class="number">123</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    <?php foreach($jabatan[2] as $j1) { ?>
+                        <li><a href="#"><?php echo $j1->nama ?> <br><span class="number"><?php echo $j1->jumlah ?></span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <div class="col-md-3 ftco-animate">
                 <ul class="category text-center">
-                    <li><a href="#">Web Designer <br><span class="number">324</span> <span>Open position</span></span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Customer Service <br><span class="number">564</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Marketing &amp; Sales <br><span class="number">234</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
-                    <li><a href="#">Software Development <br><span class="number">425</span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    <?php foreach($jabatan[3] as $j1) { ?>
+                        <li><a href="#"><?php echo $j1->nama ?> <br><span class="number"><?php echo $j1->jumlah ?></span> <span>Open position</span><i class="ion-ios-arrow-forward"></i></a></li>
+                    <?php } ?>
                 </ul>
             </div>
         </div>

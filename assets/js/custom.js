@@ -87,3 +87,42 @@ $("#updateProfileForm").on('submit', function(e){
         }
     })
 });
+
+$('#apply-btn').click(function(){
+    Swal.fire({
+        title: 'Apakah anda yakin ingin melamar?',
+        text: "Pastikan profil anda terbaru",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya!',
+        cancelButtonText: 'Tidak!'
+    }).then((result) => {
+        if(result.isConfirmed){
+            $.ajax({
+                url: baseUrl+'lowongan/applyJob/'+idLowongan,
+                type: "POST",
+                success: function(data){
+                    if(data == "true"){
+                        Swal.fire(
+                            'Berhasil!',
+                            'Lamaran anda terkirim!',
+                            'success'
+                        ).then((result) => {
+                            location.reload();
+                        });
+                    }else if(data == "failed"){
+                        Swal.fire(
+                            'Gagal!',
+                            'Silahkan login untuk melamar',
+                            'error'
+                        ).then((result) => {
+                            window.location.href = baseUrl+'Login';
+                        });
+                    }
+                }
+            })
+        }
+    });
+})

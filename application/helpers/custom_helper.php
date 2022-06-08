@@ -23,6 +23,18 @@
         }
     }
 
+    function companyLog(){
+        $CI = get_instance();
+        $CI->load->library('session');
+
+        if($CI->session->userdata('id_perusahaan')){
+            return TRUE;
+        }
+        else{
+            return FALSE;
+        }
+    }
+
     function getAdminId(){
         $CI = get_instance();
         $CI->load->library('session');

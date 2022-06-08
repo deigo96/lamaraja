@@ -51,4 +51,11 @@ class M_jabatan extends CI_Model {
         $this->db->where('id_jabatan', $id);
         return $this->db->update('jabatan', $data);
     }
+
+    public function getJabatanByIdKategori($id)
+    {
+        $this->db->select('*');
+        $this->db->where('id_kategori', $id);
+        return $this->db->get('jabatan')->result();
+    }
 }

@@ -25,7 +25,7 @@
                                 data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                 <thead>
                                     <tr>
-                                        <th data-field="state" data-checkbox="false"></th>
+                                        <th data-field="state" data-checkbox="true"></th>
                                         <th data-field="id">ID</th>
                                         <th data-field="name" data-editable="false">Jabatan</th>
                                         <th data-field="email" data-editable="false">Kategori</th>

@@ -2,7 +2,7 @@ $(document).ready(function(){
     $('#log_out_admin').click(function(e){
         e.preventDefault(e);
         Swal.fire({
-            title: 'Apakah anda yakin ingin menyimpan data?',
+            title: 'Apakah anda yakin ingin keluar?',
             text: "",
             icon: 'warning',
             showCancelButton: true,

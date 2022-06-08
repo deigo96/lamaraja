@@ -93,8 +93,19 @@
     <script src="<?php echo base_url('assets/') ?>js/scrollax.min.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/main.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/jquery.validate.min.js"></script>
+    <!-- chosen JS
+		============================================ -->
+        <script src="<?php echo base_url('assets/admin/') ?>js/chosen/chosen.jquery.js"></script>
+    <script src="<?php echo base_url('assets/admin/') ?>js/chosen/chosen-active.js"></script>
+    <!-- select2 JS
+		============================================ -->
+    <script src="<?php echo base_url('assets/admin/') ?>js/select2/select2.full.min.js"></script>
+    <script src="<?php echo base_url('assets/admin/') ?>js/select2/select2-active.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/auth.js"></script>
+    <script src="<?php echo base_url('assets/') ?>js/auth-perusahaan.js"></script>
+    <script src="<?php echo base_url('assets/') ?>js/perusahaan.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/custom.js"></script>
+    <!-- <script src="<?php echo base_url('assets/') ?>js/pagination.js"></script> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
 </body>

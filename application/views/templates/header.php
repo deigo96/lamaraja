@@ -12,7 +12,12 @@
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/owl.carousel.min.css">
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/owl.theme.default.min.css">
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/magnific-popup.css">
-
+<!-- select2 CSS
+		============================================ -->
+        <link rel="stylesheet" href="<?php echo base_url('assets/admin/') ?>css/select2/select2.min.css">
+    <!-- chosen CSS
+		============================================ -->
+    <link rel="stylesheet" href="<?php echo base_url('assets/admin/') ?>css/chosen/bootstrap-chosen.css">
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/aos.css">
 
         <link rel="stylesheet" href="<?php echo base_url('assets/') ?>css/ionicons.min.css">
