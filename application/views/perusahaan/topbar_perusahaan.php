@@ -9,8 +9,8 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item active"><a href="<?php echo base_url('home') ?>" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="browsejobs.html" class="nav-link">Browse Jobs</a></li>
-                <li class="nav-item"><a href="candidates.html" class="nav-link">Canditates</a></li>
-                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
+                <li class="nav-item"><a href="<?php echo base_url('perusahaan/kandidat') ?>" class="nav-link">Kandidat</a></li>
+                <!-- <li class="nav-item"><a href="<?php echo base_url('perusahaan/ak') ?>" class="nav-link">Aktifitas</a></li> -->
                 <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
                 <li class="nav-item"><a href="<?php echo base_url('perusahaan/tambah_lowongan') ?>" class="nav-link">Tambah Lowongan</a></li>
                 <?php if(!userLog() && !companyLog()){?>
@@ -27,7 +27,7 @@
                             <?php echo $getData->nama_perusahaan ?>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="<?php echo base_url('Profile/lihat_profile/').$getData->id_perusahaan ?>"><i class="icon icon-user"></i> Profile</a>
+                            <a class="dropdown-item" href="<?php echo base_url('perusahaan/profile_perusahaan/index/').$getData->nama_perusahaan ?>"><i class="icon icon-user"></i> Profile</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" id="logOutPerusahaan"><i class="icon icon-sign-out"></i> Keluar</a>
                         </div>

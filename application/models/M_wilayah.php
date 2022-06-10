@@ -22,7 +22,7 @@ class M_wilayah extends CI_Model {
     public function getAllKecamatan($idKabupaten)
     {
         $this->db->select('*');
-        $this->db->where('regency_is', $idKabupaten);
+        $this->db->where('regency_id', $idKabupaten);
         return $this->db->get('districts')->result();
     }
 
@@ -31,6 +31,16 @@ class M_wilayah extends CI_Model {
         $this->db->select('*');
         $this->db->where('district_id', $idKecamatan);
         return $this->db->get('villages')->result();
+    }
+
+    public function getKabupatenById($id)
+    {
+        return $this->db->get_where('regencies', array('id'=>$id))->row();
+    }
+
+    public function getKecamatanById($id)
+    {
+        return $this->db->get_where('districts', array('id'=>$id))->row();
     }
 
 }

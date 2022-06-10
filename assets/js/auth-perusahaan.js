@@ -151,16 +151,16 @@ $(document).ready(function(){
         }
     });
     
-    $('#ganti-password').validate({
+    $('#ganti_password_perusahaan').validate({
         rules: {
             passwordLama: {
                 required: true,
                 remote: {
-                    url: baseUrl+'Profile/checkPassword/',
+                    url: baseUrl+'perusahaan/Profile_perusahaan/checkPassword/',
                     type: "post",
                     data: {
                         passwordLama: function() {
-                            return $( "#passwordLama" ).val();
+                            return $( "#passwordLamaPerusahaan" ).val();
                         }
                     }
                 }
@@ -172,7 +172,7 @@ $(document).ready(function(){
             konfirmasiPassword: {
                 required: true,
                 minlength: 8,
-                equalTo: "#passwordBaru"
+                equalTo: "#passwordBaruPerusahaan"
             }
         },
         messages: {
@@ -193,8 +193,8 @@ $(document).ready(function(){
         }
     });
 
-    var gantiPassword = $( "#ganti-password" );
-    $('#ganti-password').on('submit',function(e){
+    var gantiPassword = $( "#ganti_password_perusahaan" );
+    $('#ganti_password_perusahaan').on('submit',function(e){
         e.preventDefault();
         if(gantiPassword.valid()){
             Swal.fire({
@@ -210,7 +210,7 @@ $(document).ready(function(){
                 if (result.isConfirmed) {
                     $.ajax({
                         type:"POST",
-                        url: baseUrl + 'Profile/gantiPassword',
+                        url: baseUrl + 'perusahaan/Profile_perusahaan/gantiPassword',
                         data:new FormData(this),
                         processData: false,
                         cache: false,
@@ -222,7 +222,7 @@ $(document).ready(function(){
                                     'Password berhasil diganti.',
                                     'success'
                                 ).then((result) => {
-                                    window.location.href = baseUrl+'Profile/lihat_profile/'+id
+                                    location.reload();
                                 });
                                 
                             }else{

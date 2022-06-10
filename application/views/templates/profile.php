@@ -24,8 +24,7 @@
             <div class="row">
                 <div class="col-md-3">
                     <!-- Profile Image -->
-                    <div class="card card-primary card-outline" style="box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);
-    margin-bottom: 1rem;">
+                    <div class="card card-primary card-outline" style="box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);margin-bottom: 1rem;">
                         <div class="card-body box-profile">
                             <div class="text-center">
                                 <img class="profile-user-img img-fluid img-circle" 
@@ -88,7 +87,7 @@
                                 <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Pengaturan</a></li>
-                                <li class="nav-item"><a class="nav-link active" href="#password" data-toggle="tab">Pengaturan</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#password" data-toggle="tab">Password</a></li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
