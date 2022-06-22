@@ -33,10 +33,9 @@
                         <div class="form-group-inner">
                             <div class="login-btn-inner">
                                 <div class="row">
-                                    <div class="col-lg-3"></div>
-                                    <div class="col-lg-9">
+                                    <div class="col-lg-12">
                                         <div class="login-horizental cancel-wp pull-left form-bc-ele">
-                                            <input type="submit" value="Submit" class="btn btn-sm btn-primary login-submit-cs">
+                                            <input type="submit" value="Submit" class="btn btn-md btn-primary login-submit-cs">
                                         </div>
                                     </div>
                                 </div>

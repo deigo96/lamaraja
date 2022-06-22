@@ -34,7 +34,8 @@ class Login_perusahaan extends CI_Controller {
                     );
                     $this->session->set_userdata($data);
                     if($this->session->userdata('id_perusahaan')){
-                        redirect('perusahaan/home');
+						$nama = $this->session->userdata('nama_perusahaan');
+                        redirect('perusahaan/profile_perusahaan/index/'.$nama);
                     }
 				}
 			}

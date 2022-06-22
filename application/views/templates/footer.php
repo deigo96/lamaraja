@@ -1,3 +1,15 @@
+<style>
+    .container{
+        border: 1px solid rgba(0, 0, 0, 0.02);
+    box-shadow: 0px 5px 21px -14px rgb(0 0 0 / 14%);
+    }
+    /* .ftco-footer{
+        background: linear-gradient(to right, #207dff 0%, #a16ae8 100%);
+    }
+    .ftco-footer-social li a span {
+        color: #212529 !important;
+    } */
+</style>
 <footer class="ftco-footer ftco-bg-dark ftco-section">
     <div class="container">
         <div class="row mb-5">
@@ -40,12 +52,10 @@
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4 ml-md-4">
-                    <h2 class="ftco-heading-2">Account</h2>
+                    <h2 class="ftco-heading-2">Akun</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="pb-1 d-block">My Account</a></li>
-                        <li><a href="#" class="pb-1 d-block">Sign In</a></li>
-                        <li><a href="#" class="pb-1 d-block">Create Account</a></li>
-                        <li><a href="#" class="pb-1 d-block">Checkout</a></li>
+                        <li><a href="<?php echo base_url('login') ?>" class="pb-1 d-block">Pelamar</a></li>
+                        <li><a href="<?php echo base_url('perusahaan/login_perusahaan') ?>" class="pb-1 d-block">Perusahaan</a></li>
                     </ul>
                 </div>
             </div>
@@ -54,9 +64,9 @@
                     <h2 class="ftco-heading-2">Have a Questions?</h2>
                     <div class="block-23 mb-3">
                         <ul>
-                            <li><span class="icon icon-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">info@yourdomain.com</span></a></li>
+                            <li><span class="icon icon-map-marker"></span><span class="text">Alamat: Jl. Riverside 1 No.26 Waterfront Estate RT/RW 003/019, Cibatu, Cikarang Selatan, Jawa Barat</span></li>
+                            <li><a href="#"><span class="icon icon-phone"></span><span class="text">+62 82135277397</span></a></li>
+                            <li><a href="#"><span class="icon icon-envelope"></span><span class="text">deigosiahaan@gmail.com</span></a></li>
                         </ul>
                     </div>
                 </div>
@@ -79,6 +89,7 @@
 
 
     <script src="<?php echo base_url('assets/') ?>js/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
     <script src="<?php echo base_url('assets/js/bootbox.min.js') ?>"></script>
     <script src="<?php echo base_url('assets/') ?>js/jquery-migrate-3.0.1.min.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/popper.min.js"></script>
@@ -95,10 +106,11 @@
     <script src="<?php echo base_url('assets/') ?>js/jquery.validate.min.js"></script>
     <!-- chosen JS
 		============================================ -->
-        <script src="<?php echo base_url('assets/admin/') ?>js/chosen/chosen.jquery.js"></script>
+    <script src="<?php echo base_url('assets/admin/') ?>js/chosen/chosen.jquery.js"></script>
     <script src="<?php echo base_url('assets/admin/') ?>js/chosen/chosen-active.js"></script>
     <!-- select2 JS
 		============================================ -->
+    
     <script src="<?php echo base_url('assets/admin/') ?>js/select2/select2.full.min.js"></script>
     <script src="<?php echo base_url('assets/admin/') ?>js/select2/select2-active.js"></script>
     <script src="<?php echo base_url('assets/') ?>js/auth.js"></script>
@@ -107,6 +119,9 @@
     <script src="<?php echo base_url('assets/') ?>js/custom.js"></script>
     <!-- <script src="<?php echo base_url('assets/') ?>js/pagination.js"></script> -->
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
+    <?php 
+        if ($this->session->flashdata('success')) {
+            echo $this->session->flashdata('success');
+    } ?>
 </body>
 </html>

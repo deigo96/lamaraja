@@ -4,13 +4,14 @@
         font-size: 16px !important;
     }
 </style>
-<div class="hero-wrap hero-wrap-3" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap hero-wrap-3" style="background-image: url('<?php echo base_url('assets/images/bg_1.jpg') ?>');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-start" style="height: unset;">
             <div class="col-md-12 ftco-animate text-center mb-5">
                 <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Job Post</span></p>
                 <h1 class="mb-3 bread">Post A Job</h1>
+                <input type="hidden" name="status_perusahaan" id="status-perusahaan" value="<?php echo $getData->status ?>">
             </div>
         </div>
     </div>
@@ -132,21 +133,23 @@
 
             <div class="col-lg-6 col-md-6">
                 <div class="p-4 mb-3 bg-white">
-                    <h3 class="h5 text-black mb-3">Contact Info</h3>
-                    <p class="mb-0 font-weight-bold">Address</p>
-                    <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
+                    <h3 class="h5 text-black mb-3">Kontak Info</h3>
+                    <?php if(!empty($kontak)) { ?>
+                        <p class="mb-0 font-weight-bold">Alamat</p>
+                        <p class="mb-4"><?php echo $kontak->alamat_lengkap ?></p>
 
-                    <p class="mb-0 font-weight-bold">Phone</p>
-                    <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
+                        <p class="mb-0 font-weight-bold">Telepon</p>
+                        <p class="mb-4"><?php echo $kontak->telepon_perusahaan ?></p>
 
-                    <p class="mb-0 font-weight-bold">Email Address</p>
-                    <p class="mb-0"><a href="#"><span class="__cf_email__" data-cfemail="671e081215020a060e0b2703080a060e094904080a">[email&#160;protected]</span></a></p>
+                        <p class="mb-0 font-weight-bold">Kontak Email</p>
+                        <p class="mb-4"><?php echo $kontak->kontak_email ?></p>
+                    <?php } ?>
                 </div>
-                <div class="p-4 mb-3 bg-white">
+                <!-- <div class="p-4 mb-3 bg-white">
                     <h3 class="h5 text-black mb-3">More Info</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsa ad iure porro mollitia architecto hic consequuntur. Distinctio nisi perferendis dolore, ipsa consectetur</p>
                     <p><a href="#" class="btn btn-primary  py-2 px-4">Learn More</a></p>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
@@ -177,4 +180,5 @@
 
 <script>
     var baseUrl = "<?php echo base_url() ?>";
+    var namaPerusahaanLowongan = "<?php echo $getData->nama_perusahaan ?>";
 </script>

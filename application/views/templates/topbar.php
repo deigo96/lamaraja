@@ -9,9 +9,7 @@
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item"><a href="<?php echo base_url('home') ?>" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="<?php echo base_url('lowongan') ?>" class="nav-link">Lowongan</a></li>
-                <li class="nav-item"><a href="candidates.html" class="nav-link">Canditates</a></li>
-                <li class="nav-item"><a href="blog.html" class="nav-link">Blog</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="<?php echo base_url('kontak') ?>" class="nav-link">Kontak</a></li>
                 <?php if(!userLog()){?>
                     <li class="nav-item cta mr-md-1"><a href="<?php echo base_url('Login') ?>" class="nav-link">Masuk</a></li>
                     <li class="nav-item cta cta-colored"><a href="<?php echo base_url('perusahaan/login_perusahaan') ?>" class="nav-link">Perusahaan</a></li>
@@ -21,10 +19,10 @@
                 <?php if(isset($userData)): ?>
                     <div class="btn-group">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php echo $userData->nama_user ?> <span class="badge badge-danger navbar-badge">3</span>
+                            <?php echo $userData->nama_user ?> </span>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="<?php echo base_url('Profile/lihat_profile/').$userData->id_user ?>"><i class="icon icon-user"></i> Profile <span class="badge badge-danger navbar-badge">3</span></a>
+                            <a class="dropdown-item" href="<?php echo base_url('Profile/lihat_profile/').$userData->id_user ?>"><i class="icon icon-user"></i> Profile</span></a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" id="logOut"><i class="icon icon-sign-out"></i> Keluar</a>
                         </div>

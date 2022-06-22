@@ -1,8 +1,8 @@
 <div class="left-sidebar-pro">
     <nav id="sidebar" class="">
-        <div class="sidebar-header">
-            <a href="index.html"><img class="main-logo" src="<?php echo base_url('assets/admin/') ?>img/logo/logo.png" alt="" /></a>
-            <strong><a href="index.html"><img src="<?php echo base_url('assets/admin/') ?>img/logo/logosn.png" alt="" /></a></strong>
+        <div class="sidebar-header" style="margin-top:15px;">
+            <a href="index.html"><img class="main-logo" src="<?= base_url('assets/images'); ?>/icon2.png" alt="" /><span style="font-size: 16px;font-family: cursive; font-weight: bold;color: black;"> LAMARAJA</span></a>
+            <strong><a href="index.html"><img src="<?= base_url('assets/images'); ?>/icon2.png" alt="" /></a></strong>
         </div>
         <div class="left-custom-menu-adp-wrap comment-scrollbar">
             <nav class="sidebar-nav left-sidebar-menu-pro">
@@ -18,21 +18,21 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Jabatan</span></a>
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Jabatan</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="Semua Jabatan" href="<?php echo base_url('admin/jabatan/semua_jabatan') ?>"><span class="mini-sub-pro">Semua Jabatan</span></a></li>
                             <li><a title="Tambah Jabatan" href="<?php echo base_url('admin/jabatan/tambah_jabatan') ?>"><span class="mini-sub-pro">Tambah Jabatan</span></a></li>
                         </ul>
                     </li>
                     <li>
-                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-library icon-wrap"></span> <span class="mini-click-non">Library</span></a>
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">User</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="All Library" href="library-assets.html"><span class="mini-sub-pro">Library Assets</span></a></li>
                             <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Add Library Asset</span></a></li>
                             <li><a title="Edit Library" href="edit-library-assets.html"><span class="mini-sub-pro">Edit Library Asset</span></a></li>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Departments</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="Departments List" href="departments.html"><span class="mini-sub-pro">Departments List</span></a></li>
@@ -112,7 +112,7 @@
                             <li><a title="404 Page" href="404.html"><span class="mini-sub-pro">404 Page</span></a></li>
                             <li><a title="500 Page" href="500.html"><span class="mini-sub-pro">500 Page</span></a></li>
                         </ul>
-                    </li>
+                    </li> -->
                 </ul>
             </nav>
         </div>

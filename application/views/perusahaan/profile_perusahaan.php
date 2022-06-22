@@ -2,9 +2,13 @@
      .form-control{
         height: 35px !important;
         font-size: 14px !important;
+        color: #5d5454 !important;
+    }
+    .mailbox-name a:hover {
+        color: #aa8d8d;
     }
 </style>
-<div class="hero-wrap hero-wrap-3" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap hero-wrap-3" style="background-image: url('<?php echo base_url('assets/images/bg_1.jpg') ?>');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-start">
@@ -38,7 +42,7 @@
                                     alt="Foto profile user">
                             </div>
                             <h3 class="profile-username text-center"><?php echo $getData->nama_perusahaan ?></h3>
-                            <p class="text-muted text-center">Software Engineer</p>
+                            <!-- <p class="text-muted text-center">Software Engineer</p>
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
                                     <b>Followers</b> <a class="float-right">1,322</a>
@@ -49,8 +53,8 @@
                                 <li class="list-group-item">
                                     <b>Friends</b> <a class="float-right">13,287</a>
                                 </li>
-                            </ul>
-                            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                            </ul> -->
+                            <a href="<?php echo base_url('perusahaan/tambah_lowongan') ?>" class="btn btn-primary btn-block"><b>Tambah Lowongan</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -62,20 +66,147 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link" href="#activity" data-toggle="tab">Activity</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#activity" data-toggle="tab">Activity</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#timeline" data-toggle="tab">Timeline</a></li>
-                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Pengaturan</a></li>
-                                <li class="nav-item"><a class="nav-link active" href="#password" data-toggle="tab">Password</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#settings" data-toggle="tab">Profile</a></li>
+                                <li class="nav-item"><a class="nav-link" href="#password" data-toggle="tab">Password</a></li>
                             </ul>
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
+                                <div class="active tab-pane" id="activity">
+                                    <div class="content-wrapper">
+
+                                        <!-- Main content -->
+                                        <section class="content">
+                                            <div class="row">
+                                                <!-- /.col -->
+                                                <div class="col-md-12">
+                                                    <div class="card card-primary card-outline">
+                                                        <div class="card-header">
+                                                            <div class="card-tools">
+                                                                <div class="input-group input-group-sm">
+                                                                    <input type="text" class="form-control" placeholder="Search Mail">
+                                                                    <div class="input-group-append">
+                                                                        <button type="submit" class="form-control btn btn-primary">Search</button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <!-- /.card-tools -->
+                                                        </div>
+                                                        <!-- /.card-header -->
+                                                        <div class="card-body p-0">
+                                                            <!-- <div class="mailbox-controls">
+                                                                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+                                                                </button>
+                                                                <div class="btn-group">
+                                                                    <button type="button" class="btn btn-default btn-sm">
+                                                                        <i class="far fa-trash-alt"></i>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-default btn-sm">
+                                                                        <i class="fas fa-reply"></i>
+                                                                    </button>
+                                                                    <button type="button" class="btn btn-default btn-sm">
+                                                                        <i class="fas fa-share"></i>
+                                                                    </button>
+                                                                </div>
+                                                                <button type="button" class="btn btn-default btn-sm">
+                                                                <i class="fas fa-sync-alt"></i>
+                                                                </button>
+                                                                <div class="float-right">
+                                                                    1-50/200
+                                                                    <div class="btn-group">
+                                                                        <button type="button" class="btn btn-default btn-sm">
+                                                                        <i class="fas fa-chevron-left"></i>
+                                                                        </button>
+                                                                        <button type="button" class="btn btn-default btn-sm">
+                                                                        <i class="fas fa-chevron-right"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div> -->
+                                                            <div class="table-responsive mailbox-messages">
+                                                                <table class="table table-hover table-striped" id="table-notif">
+                                                                    <tbody>
+                                                                        <?php if(count($getKandidat) > 0){ ?>
+                                                                            <?php foreach($getKandidat as $kandidat) { $style = "background-color: #fff !important" ?>
+                                                                                <?php $deskirpsi = str_replace("#", ', ',$kandidat->deskripsi) ?>
+                                                                                <?php if($kandidat->status_notifikasi == 0) {
+                                                                                    $style = "background-color: lavender !important";
+                                                                                } ?>
+                                                                                <tr style="<?php echo $style ?>">
+                                                                                    <td class="mailbox-name"><a href="<?php echo base_url('perusahaan/kandidat/profil_pelamar/').$kandidat->id_proses_lowongan ?>"><?php echo $kandidat->nama_pelamar ?></a></td>
+                                                                                    <td class="mailbox-subject"><b><?php echo $kandidat->nama_jabatan ?></b> - <?php echo max_karakter($deskirpsi, 30) ?></td>
+                                                                                    <td class="mailbox-date"><?php echo time_elapsed_string($kandidat->tanggal) ?></td>
+                                                                                    <td class="mailbox-status">
+                                                                                        <?php   if($kandidat->status_kandidat != 0) { ?>
+                                                                                            <button disabled>Sudah di proses</button>
+                                                                                        <?php }else{ ?>
+                                                                                            <a href="<?php echo base_url('perusahaan/kandidat/profil_pelamar/').$kandidat->id_proses_lowongan ?>" class="btn btn-primary text-center"> Review </a>
+                                                                                        <?php } ?>
+                                                                                    </td>
+                                                                                </tr>
+                                                                        <?php }} ?>
+                                                                    </tbody>
+                                                                </table>
+                                                                <!-- /.table -->
+                                                            </div>
+                                                            <!-- /.mail-box-messages -->
+                                                        </div>
+                                                        <!-- /.card-body -->
+                                                        <div class="card-footer p-0">
+
+                                                        </div>
+                                                    </div>
+                                                <!-- /.card -->
+                                                </div>
+                                                <!-- /.col -->
+                                            </div>
+                                            <!-- /.row -->
+                                        </section>
+                                        <!-- /.content -->
+                                    </div>
+                                <!-- /.content-wrapper -->
+                                </div>
+                                <div class="tab-pane" id="timeline">
+                                    <div class="timeline timeline-inverse" style="color: white">
+                                        <?php foreach ($getLowongan as $lowongan) { ?>
+                                            <div class="time-label">
+                                                <span class="bg-success">
+                                                    <?php echo date('d M, Y', strtotime($lowongan->tanggal_post)) ?>
+                                                </span>
+                                            </div>
+                                            <div>
+                                                <div class="timeline-item">
+                                                    <span class="time"><i class="far fa-clock"></i> <?php echo date('H:i', strtotime($lowongan->tanggal_post)) ?></span>
+                                                    <h3 class="timeline-header">
+                                                        <?php 
+                                                            if($lowongan->tanggal_update == 0)
+                                                                echo "Anda memposting lowongan";
+                                                            else
+                                                                echo "Anda menghapus lowongan"
+                                                        ?>
+                                                    </h3>
+                                                    <div class="timeline-body bold">
+                                                        <b><?php echo $lowongan->nama_jabatan ?></b>
+                                                    </div>
+                                                    <div class="timeline-footer">
+                                                        <a href="#" class="btn btn-warning btn-sm">Read more</a>
+                                                        <?php if($lowongan->tanggal_update == 0) { ?>
+                                                            <button type="button" href="" onclick="deleteLowongan('<?php echo $lowongan->id_lowongan ?>')" class="btn btn-danger btn-sm">Delete</button>
+                                                        <?php } ?>
+                                                    </div>
+                                                </div>  
+                                            </div>
+                                        <?php } ?>
+                                    </div>
+                                </div>
                                 <div class="tab-pane" id="settings">
                                     <form action="#" class="form-horizontal" id="updateProfilePerusahaan" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Nama Perusahaan</label>
                                             <div class="col-sm-10">
-                                                <input type="text" name="nama_perusahaan" class="form-control" id="namaPerusahaan" placeholder="Nama Perusahaan" value="<?php echo !empty($getProfile) ? $getProfile->nama_perusahaan : $getData->nama_perusahaan ?>" >
+                                                <input type="text" name="nama_perusahaan" class="form-control" id="namaPerusahaan" placeholder="Nama Perusahaan" value="<?php echo !empty($getProfile) ? $getProfile->nama_perusahaan : $getData->nama_perusahaan ?>" readonly>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -189,7 +320,7 @@
                                     </form>
                                 </div>
                                 <!-- /.tab-pane -->
-                                <div class="active tab-pane" id="password">
+                                <div class="tab-pane" id="password">
                                     <form action="#" class="form-horizontal" id="ganti_password_perusahaan" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label for="inputPasswordLama" class="col-sm-2 col-form-label">Password Lama</label>
@@ -230,7 +361,24 @@
     </section>
     <!-- /.content -->
 </div>
+<!-- <script src="<?php echo base_url('assets/') ?>js/jquery.min.js"></script> -->
 <script>
+
+    // $(document).ready(function(){
+    //     function unReadNotification(view = ''){
+    //         $.ajax({
+    //             url:baseUrl+"perusahaan/profile_perusahaan/notifikasiPerusahaan",
+    //             method:"POST",
+    //             data:{view:view},
+    //             dataType:"json",
+    //             success:function(data){
+    //                 console.log(data)
+    //             }
+    //         })
+    //     }
+
+    //     unReadNotification();
+    // });
     var baseUrl = "<?php echo base_url() ?>";
     var id = <?php echo $this->session->userdata('id_perusahaan') ?>;
 </script>

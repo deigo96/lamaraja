@@ -10,12 +10,15 @@ class Lowongan extends CI_Controller {
 		$this->load->model('M_wilayah');
     }
 
-	public function index($kategori="", $lokasi="", $tipe="")
+	public function index()
 	{
 		$data['id_user']	= $this->session->userdata('id_user');
-        $data['allLowongan']= $this->M_user->getAllLowongan($kategori, $lokasi, $tipe);
+        $data['allLowongan']= $this->search();
 		$data['getJabatan'] = $this->M_jabatan->getAllJabatan();
+		$data['getKategori'] = $this->M_jabatan->getAllKategori();
         $data['wilayah']	= $this->M_wilayah->getAllProvinsi();
+		// $search = $this->search();
+		// var_dump($search);
 		if(userLog()){
 			$id = $this->session->userdata('id_user');
 			$userData = $this->M_user->getUserData($id);
@@ -36,6 +39,7 @@ class Lowongan extends CI_Controller {
 		$data['id_user']	= $this->session->userdata('id_user');
         // $data['allLowongan']= $this->M_user->getAllLowongan($kategori, $lokasi, $tipe);
 		$data['getJabatan'] = $this->M_jabatan->getAllJabatan();
+		$data['getKategori'] = $this->M_jabatan->getAllKategori();
         $data['wilayah']	= $this->M_wilayah->getAllProvinsi();
 		$data['lowongan']	= $this->M_user->getLowonganById($idLowongan);
 		if(userLog()){
@@ -72,4 +76,107 @@ class Lowongan extends CI_Controller {
 			echo "failed";
 		}
 	}
+
+	public function pencarian($jabatan="", $lokasi="", $tipe="")
+	{
+		$jabatan = str_replace("%20", " ", $jabatan);
+		$data['getKategori'] = $this->M_jabatan->getAllKategori();
+        $data['wilayah']	= $this->M_wilayah->getAllProvinsi();
+        $data['lowonganByJabatan']= $this->M_user->getLowonganByJabatan($jabatan, $lokasi, $tipe);
+		if(userLog()){
+			$id = $this->session->userdata('id_user');
+			$userData = $this->M_user->getUserData($id);
+
+			$data['userData']	= $userData;
+		}
+		$this->load->view('templates/header');
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('templates/lowongan', $data);
+		$this->load->view('templates/footer');
+	}
+
+	// public function search_job()
+	// {
+	// 	$kategori 	= $this->input->post('kategori');
+	// 	$lokasi 	= $this->input->post('lokasi');
+	// 	$tipe 		= $this->input->post('tipe');
+	// 	$data['getKategori'] = $this->M_jabatan->getAllKategori();
+    //     $data['wilayah']	= $this->M_wilayah->getAllProvinsi();
+	// 	$data['home'] 	= $this->M_user->getLowonganByJabatan($kategori, $lokasi, $tipe);
+	// 	if(userLog()){
+	// 		$id = $this->session->userdata('id_user');
+	// 		$userData = $this->M_user->getUserData($id);
+
+	// 		$data['userData']	= $userData;
+	// 	}
+	// 	$this->load->view('templates/header');
+	// 	$this->load->view('templates/topbar', $data);
+	// 	$this->load->view('templates/lowongan', $data);
+	// 	$this->load->view('templates/footer');
+	// }
+
+	public function search()
+	{
+		$kategori 	= $this->input->post('kategori');
+		$lokasi 	= $this->input->post('lokasi');
+		$tipe 		= $this->input->post('tipe');
+
+		$search 	= $this->M_user->getSearchKategori($kategori, $lokasi, $tipe);
+		return $search;
+
+		// $data = array(
+		// 	'kategori' 	=>$kategori,
+		// 	'lokasi'	=>$lokasi,
+		// 	'tipe'		=>$tipe
+		// );
+		// var_dump($data);
+	}
+
+	public function kategori($nama="",$lokasi="", $tipe="")
+	{
+		if($nama != "")
+			$kategori = str_replace('%20', " ", $nama);
+		else
+			$kategori = $this->input->post('kategori');
+			
+		$lokasi = $this->input->post('lokasi');
+		$tipe	= $this->input->post('tipe');
+		// var_dump($lokasi, $kategori, $tipe);
+		$data['lowongan'] 	= $this->M_user->getKategoriByNama($kategori, $lokasi, $tipe);
+		$data['getKategori']= $this->M_jabatan->getAllKategori();
+        $data['wilayah']	= $this->M_wilayah->getAllProvinsi();
+
+		if(userLog()){
+			$id = $this->session->userdata('id_user');
+			$userData = $this->M_user->getUserData($id);
+
+			$data['userData']	= $userData;
+		}
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('templates/lowongan', $data);
+		$this->load->view('templates/footer');
+	}
+
+	public function perusahaan($nama)
+	{
+		$perusahaan = str_replace('%20', " ", $nama);
+
+		$data['perusahaan']	= $this->M_user->getLowonganByPerusahaan($perusahaan);
+		$data['getKategori']= $this->M_jabatan->getAllKategori();
+        $data['wilayah']	= $this->M_wilayah->getAllProvinsi();
+		if(userLog()){
+			$id = $this->session->userdata('id_user');
+			$userData = $this->M_user->getUserData($id);
+
+			$data['userData']	= $userData;
+		}
+
+		$this->load->view('templates/header');
+		$this->load->view('templates/topbar', $data);
+		$this->load->view('templates/lowongan', $data);
+		$this->load->view('templates/footer');
+	}
+
 }

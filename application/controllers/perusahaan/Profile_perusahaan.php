@@ -24,9 +24,9 @@ class Profile_perusahaan extends CI_Controller {
         if(companyLog()){
 			$id         = $this->session->userdata('id_perusahaan');
             $getProfile = $this->M_Perusahaan->getProfilePerusahaan($id);
-            $idprov     = $getProfile->id_provinsi;
-            $idkab      = $getProfile->id_kabupaten;
-            $idkec      = $getProfile->id_kecamatan;
+            $idprov     = !empty($getProfile) ? $getProfile->id_provinsi : "";
+            $idkab      = !empty($getProfile) ? $getProfile->id_kabupaten : "";
+            $idkec      = !empty($getProfile) ? $getProfile->id_kecamatan : "";
 
             $data['getKab']         = $this->M_wilayah->getKabupatenById($idkab);
             $data['getKec']         = $this->M_wilayah->getKecamatanById($idkec);
@@ -36,6 +36,7 @@ class Profile_perusahaan extends CI_Controller {
 			$data['getProvinsi']    = $this->M_wilayah->getAllProvinsi();
 			$data['getKabupaten']   = $this->M_wilayah->getAllKabupaten($idprov);
 			$data['getKecamatan']   = $this->M_wilayah->getAllKecamatan($idkab);
+            $data['getLowongan']    = $this->M_Perusahaan->getLowonganById($id);
 
             $this->load->view('templates/header');
             $this->load->view('perusahaan/topbar_perusahaan', $data);
@@ -152,6 +153,23 @@ class Profile_perusahaan extends CI_Controller {
             }else{
                 echo "false";
             }
+        }
+    }
+
+    public function notifikasiPerusahaan()
+    {
+        echo "berhasil";
+    }
+
+    public function hapus_lowongan($idLowongan)
+    {
+        if(companyLog()){
+            $idPerusahaan   = $this->session->userdata('id_perusahaan');
+            $hapusLowongan  = $this->M_Perusahaan->hapusLowongan($idLowongan);
+            if($hapusLowongan)
+                echo "true";
+            else
+                echo "false";
         }
     }
 }

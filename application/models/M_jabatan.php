@@ -58,4 +58,13 @@ class M_jabatan extends CI_Model {
         $this->db->where('id_kategori', $id);
         return $this->db->get('jabatan')->result();
     }
+
+    public function getPosisiByKat()
+    {
+        $query = $this->db->query("SELECT kategori.kategori_id, kategori.nama, COUNT(lowongan.id_kategori) as jumlah_posisi
+                                    FROM kategori
+                                    LEFT JOIN lowongan ON kategori.kategori_id = lowongan.id_kategori
+                                        GROUP BY kategori.nama ORDER BY kategori.kategori_id ASC LIMIT 6");
+        return $query->result();
+    }
 }

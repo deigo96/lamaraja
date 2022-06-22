@@ -2,12 +2,20 @@
     .chosen-drop{
         position:relative; z-index:100
     
-}
-.hide{
-    display: none;
-}
+        }
+        .hide{
+            display: none;
+        }
+        .pencarian{
+            text-align: right;
+            font-size: 20px;
+            font-family: monospace;
+        }
+        .pencarian b{
+            color: black;
+        }
 </style>
-<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo base_url('assets/images/bg_1.jpg') ?>');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-start">
@@ -24,29 +32,121 @@
         <div class="row">
             <div class="col-lg-9 pr-lg-4">
                 <div class="row">
-                    <?php foreach($allLowongan as $lowongan) { ?>
-                        <div class="col-md-12 ftco-animate">
-                            <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
-                                <div class="one-third mb-4 mb-md-0">
-                                    <div class="job-post-item-header align-items-center">
-                                        <span class="subadge"><?php echo $lowongan->tipePekerjaan ?></span>
-                                    <h2 class="mr-3 text-black"><a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>"><?php echo $lowongan->nama_jabatan ?></a></h2>
-                                    </div>
-                                    <div class="job-post-item-body d-block d-md-flex">
-                                        <div class="mr-3"><span class="icon-layers"></span> <a href="#"><?php echo $lowongan->nama_perusahaan ?></a></div>
-                                        <div><span class="icon-my_location"></span> <span><?php echo $lowongan->nama_provinsi.', '.$lowongan->nama_kabupaten ?></span></div>
-                                    </div>
-                                </div>
-                                <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
-                                    <div>
-                                        <!-- <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
-                                            <span class="icon-heart"></span>
-                                        </a> -->
-                                    </div>
-                                    <a href="<?php echo base_url('lowongan') ?>" class="btn btn-primary py-2">Apply Job</a>
-                                </div>
+                    <?php if(isset($perusahaan)){?>
+                        <div class="col-md-12">
+                            <div class="pencarian">
+                                <span><b><?php echo count($perusahaan) ?></b> Hasil ditemukan</span>
                             </div>
-                        </div><!-- end -->
+                        </div>
+                        <?php foreach($perusahaan as $lowongan) { ?>
+                            <div class="col-md-12 ftco-animate">
+                                <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+                                    <div class="one-third mb-4 mb-md-0">
+                                        <div class="job-post-item-header align-items-center">
+                                            <span class="subadge"><?php echo $lowongan->tipePekerjaan ?></span>
+                                        <h2 class="mr-3 text-black"><a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>"><?php echo $lowongan->nama_jabatan ?></a></h2>
+                                        </div>
+                                        <div class="job-post-item-body d-block d-md-flex">
+                                            <div class="mr-3"><span class="icon-layers"></span> <a href="#"><?php echo $lowongan->nama_perusahaan ?></a></div>
+                                            <div><span class="icon-my_location"></span> <span><?php echo $lowongan->nama_provinsi.', '.$lowongan->nama_kabupaten ?></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
+                                        <div>
+                                            <!-- <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
+                                                <span class="icon-heart"></span>
+                                            </a> -->
+                                        </div>
+                                        <a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>" class="btn btn-primary py-2">Apply Job</a>
+                                    </div>
+                                </div>
+                            </div><!-- end -->
+                        <?php } ?>
+                    <?php }elseif(isset($lowongan)) { ?>
+                        <div class="col-md-12">
+                            <div class="pencarian">
+                                <span><b><?php echo count($lowongan) ?></b> Hasil ditemukan</span>
+                            </div>
+                        </div>
+                        <?php foreach($lowongan as $lowongan) { ?>
+                            <div class="col-md-12 ftco-animate">
+                                <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+                                    <div class="one-third mb-4 mb-md-0">
+                                        <div class="job-post-item-header align-items-center">
+                                            <span class="subadge"><?php echo $lowongan->tipePekerjaan ?></span>
+                                        <h2 class="mr-3 text-black"><a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>"><?php echo $lowongan->nama_jabatan ?></a></h2>
+                                        </div>
+                                        <div class="job-post-item-body d-block d-md-flex">
+                                            <div class="mr-3"><span class="icon-layers"></span> <a href="#"><?php echo $lowongan->nama_perusahaan ?></a></div>
+                                            <div><span class="icon-my_location"></span> <span><?php echo $lowongan->nama_provinsi.', '.$lowongan->nama_kabupaten ?></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
+                                        <div>
+                                            <!-- <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
+                                                <span class="icon-heart"></span>
+                                            </a> -->
+                                        </div>
+                                        <a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>" class="btn btn-primary py-2">Apply Job</a>
+                                    </div>
+                                </div>
+                            </div><!-- end -->
+                        <?php } ?>
+                    <?php } elseif(isset($lowonganByJabatan)) { ?>
+                        <div class="col-md-12">
+                            <div class="pencarian">
+                                <span><b><?php echo count($lowonganByJabatan) ?></b> Hasil ditemukan</span>
+                            </div>
+                        </div>
+                        <?php foreach($lowonganByJabatan as $lowongan) { ?>
+                            <div class="col-md-12 ftco-animate">
+                                <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+                                    <div class="one-third mb-4 mb-md-0">
+                                        <div class="job-post-item-header align-items-center">
+                                            <span class="subadge"><?php echo $lowongan->tipePekerjaan ?></span>
+                                        <h2 class="mr-3 text-black"><a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>"><?php echo $lowongan->nama_jabatan ?></a></h2>
+                                        </div>
+                                        <div class="job-post-item-body d-block d-md-flex">
+                                            <div class="mr-3"><span class="icon-layers"></span> <a href="#"><?php echo $lowongan->nama_perusahaan ?></a></div>
+                                            <div><span class="icon-my_location"></span> <span><?php echo $lowongan->nama_provinsi.', '.$lowongan->nama_kabupaten ?></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
+                                        <div>
+                                            <!-- <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
+                                                <span class="icon-heart"></span>
+                                            </a> -->
+                                        </div>
+                                        <a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>" class="btn btn-primary py-2">Apply Job</a>
+                                    </div>
+                                </div>
+                            </div><!-- end -->
+                        <?php } ?>
+                    <?php }else { ?>
+                        <?php foreach($allLowongan as $lowongan) { ?>
+                            <div class="col-md-12 ftco-animate">
+                                <div class="job-post-item p-4 d-block d-lg-flex align-items-center">
+                                    <div class="one-third mb-4 mb-md-0">
+                                        <div class="job-post-item-header align-items-center">
+                                            <span class="subadge"><?php echo $lowongan->tipePekerjaan ?></span>
+                                        <h2 class="mr-3 text-black"><a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>"><?php echo $lowongan->nama_jabatan ?></a></h2>
+                                        </div>
+                                        <div class="job-post-item-body d-block d-md-flex">
+                                            <div class="mr-3"><span class="icon-layers"></span> <a href="#"><?php echo $lowongan->nama_perusahaan ?></a></div>
+                                            <div><span class="icon-my_location"></span> <span><?php echo $lowongan->nama_provinsi.', '.$lowongan->nama_kabupaten ?></span></div>
+                                        </div>
+                                    </div>
+                                    <div class="one-forth ml-auto d-flex align-items-center mt-4 md-md-0">
+                                        <div>
+                                            <!-- <a href="#" class="icon text-center d-flex justify-content-center align-items-center icon mr-2">
+                                                <span class="icon-heart"></span>
+                                            </a> -->
+                                        </div>
+                                        <a href="<?php echo base_url('lowongan/detail_lowongan/').$lowongan->id_lowongan ?>" class="btn btn-primary py-2">Apply Job</a>
+                                    </div>
+                                </div>
+                            </div><!-- end -->
+                        <?php } ?>
                     <?php } ?>
                 </div>
                 <!-- <div class="row mt-5">
@@ -68,40 +168,36 @@
             <div class="col-lg-3 sidebar">
                 <div class="sidebar-box bg-white p-4 ftco-animate">
                     <h3 class="heading-sidebar">Kategori</h3>
-                    <form action="#" class="search-form mb-3">
+                    <form action="<?php echo base_url('lowongan/kategori') ?>" method="POST" class="search-form mb-3">
                         <div class="form-group">
-                            <select name="kategori" id="kategori" class="form-control chosen-select">
+                            <select name="kategori" id="kategoriPencarian" class="form-control chosen-select">
                                 <option value="">Semua Kategori</option>
-                                <?php foreach($getJabatan as $jabatan) { ?>
-                                    <option value="<?php echo $jabatan->id_jabatan ?>"><?php echo $jabatan->nama ?></option>
+                                <?php foreach($getKategori as $kategori) { ?>
+                                    <option value="<?php echo $kategori->nama ?>"><?php echo $kategori->nama ?></option>
                                 <?php }?>
                             </select>
                         </div>
-                    </form>
-                    <h3 class="heading-sidebar mt-5">Pilih Lokasi</h3>
-                    <form action="#" class="search-form mb-3">
+                        <h3 class="heading-sidebar mt-5">Pilih Lokasi</h3>
                         <div class="form-group">
-                            <select name="lokasi" id="lokasi" class="form-control chosen-select" style="width: 250px; position:fixed; z-index:99999">
+                            <select name="lokasi" id="lokasiPencarian" class="form-control chosen-select" style="width: 250px; position:fixed; z-index:99999">
                                 <option value="">Semua Lokasi</option>
                                 <?php foreach($wilayah as $wilayah) { ?>
-                                    <option value="<?php echo $wilayah->id ?>"><?php echo $wilayah->name ?></option>
+                                    <option value="<?php echo $wilayah->name ?>"><?php echo $wilayah->name ?></option>
                                 <?php }?>
                             </select>
                         </div>
-                    </form>
-                    <h3 class="heading-sidebar mt-5">Tipe Pekerjaan</h3>
-                    <form action="#" class="browse-form">
-                        <select name="tipe" id="tipe" class="form-control chosen-select">
+                        <h3 class="heading-sidebar mt-5">Tipe Pekerjaan</h3>
+                        <select name="tipe" id="tipePencarian" class="form-control chosen-select">
                             <option value="">Semua tipe pekerjaan</option>
                             <option value="Full Time">Full Time</option>
                             <option value="Part Time">Part Time</option>
                             <option value="Internship">Internship</option>
                             <option value="Freelance">Freelance</option>
                         </select>
+                        <p class="mt-5">
+                            <button type="submit" name="cariLowongan" class="btn btn-primary btn-block">Cari</button>
+                        </p>
                     </form>
-                    <p class="mt-5">
-                        <a href="#" class="btn btn-primary btn-block">Cari</a>
-                    </p>
                 </div>
             </div>
         </div>

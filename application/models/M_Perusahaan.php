@@ -89,13 +89,14 @@ class M_Perusahaan extends CI_Model {
 
     public function getAllKandidat($idPerusahaan)
     {
-        $query = $this->db->query("SELECT proses_lowongan.*,profile_users.nama as nama_pelamar, profile_users.nama_institusi,profile_users.jurusan,profile_users.deskripsi as deskripsi_pelamar,profile_users.foto, lowongan.*, jabatan.nama as nama_jabatan
+        $query = $this->db->query("SELECT proses_lowongan.*,proses_lowongan.status as status_kandidat,profile_users.nama as nama_pelamar, profile_users.nama_institusi,profile_users.jurusan,profile_users.deskripsi as deskripsi_pelamar,profile_users.foto, lowongan.*, jabatan.nama as nama_jabatan
                                     FROM `proses_lowongan`
                                     LEFT JOIN lowongan ON proses_lowongan.id_lowongan = lowongan.id_lowongan
                                     LEFT JOIN users ON proses_lowongan.id_user = users.id_user
                                     LEFT JOIN profile_users on profile_users.id_user = users.id_user
                                     LEFT JOIN jabatan ON lowongan.id_jabatan = jabatan.id_jabatan
-                                    WHERE lowongan.id_perusahaan = '$idPerusahaan' AND proses_lowongan.status = '0'");
+                                    WHERE lowongan.id_perusahaan = '$idPerusahaan' 
+                                        ORDER BY proses_lowongan.tanggal DESC");
         return $query->result();
     }
 
@@ -115,6 +116,25 @@ class M_Perusahaan extends CI_Model {
     {
         $this->db->where('id_proses_lowongan', $idLamaran);
         return $this->db->update('proses_lowongan', $data);
+    }
+
+    public function getLowonganById($idPerusahaan)
+    {
+        $query = $this->db->query("SELECT lowongan.*, jabatan.nama as nama_jabatan, kategori.nama as nama_kategori
+                                    FROM lowongan
+                                    LEFT JOIN jabatan ON lowongan.id_jabatan = jabatan.id_jabatan
+                                    LEFT JOIN kategori ON lowongan.id_kategori = kategori.kategori_id
+                                    WHERE lowongan.id_perusahaan = '$idPerusahaan'
+                                        ORDER BY lowongan.id_lowongan DESC");
+
+        return $query->result();
+    }
+
+    public function hapusLowongan($idLowongan)
+    {
+        $data = date('d-m-Y H:i');
+        $this->db->where('id_lowongan', $idLowongan);
+        return $this->db->update('lowongan', array('status' =>'0', 'tanggal_update'=>$data));
     }
 
 }

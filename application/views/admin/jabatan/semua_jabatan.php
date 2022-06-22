@@ -6,9 +6,9 @@
                 <div class="sparkline13-list">
                     <div class="sparkline13-hd">
                         <div class="main-sparkline13-hd">
-                            <h1>Projects <span class="table-project-n">Data</span> Table</h1>
+                            <h1>Semua <span class="table-project-n">Jabatan</span></h1>
                             <div class="add-product">
-                                <a href="<?php echo base_url('admin/jabatan/tambah_jabatan') ?>">Tambah Kategori</a>
+                                <a href="<?php echo base_url('admin/jabatan/tambah_jabatan') ?>">Tambah Jabatan</a>
                             </div>
                         </div>
                     </div>

@@ -126,3 +126,88 @@ $('#apply-btn').click(function(){
         }
     });
 })
+
+if($('.email-terkirim')[0]){
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer)
+            toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+    })
+      
+    Toast.fire({
+        icon: 'success',
+        title: 'Email terkirim'
+    })
+}
+
+// $('.pencarian-lowongan').on('submit', function(e){
+//     e.preventDefault()
+//     var dataform = new FormData(this);
+//     $.ajax({
+//         url: baseUrl+'lowongan/search',
+//         type: "POST",
+//         data: new FormData(this),
+//         processData: false,
+//         cache: false,
+//         contentType: false,
+//         success: function(data){
+//         },
+//         error: function (xhr, ajaxOptions, thrownError) {
+            
+//         }
+//     })
+// });
+
+$(function(){
+    $.ajax({
+        url: baseUrl+'home/autocompleteLokasi',
+        datatype: "JSON",
+        type: "GET",
+        success: function(result){
+            var data = JSON.parse(result);
+            $('#auto-complete-lokasi').autocomplete({
+                source: data,                
+            });
+            
+        }
+    })
+
+    $.ajax({
+        url: baseUrl+'home/autocompleteKategori',
+        datatype: "JSON",
+        type: "GET",
+        success: function(result){
+            var data = JSON.parse(result);
+            $('#auto-complete-kategori').autocomplete({
+                source: data,                
+            });
+            
+        }
+    })
+
+    var tipe = [
+        "Full Time",
+        "Part Time",
+        "Internship",
+        "Freelance"
+    ];
+    $('#auto-complete-tipe').autocomplete({
+        source: tipe,  
+        minLength: 0,
+        minChars: 0,
+        max: 12,
+        autoFill: true,
+        mustMatch: true,
+        matchContains: false,
+        scrollHeight: 220,              
+    }).on('focus', function(event) {
+        var self = this;
+        $(self).autocomplete( "search", "");;
+    });
+});

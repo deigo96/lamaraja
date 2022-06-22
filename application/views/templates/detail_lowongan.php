@@ -29,7 +29,7 @@
     }
 </style>
 
-<div class="hero-wrap hero-wrap-2" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap hero-wrap-2" style="background-image: url('<?php echo base_url('assets/images/bg_1.jpg') ?>');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <!-- <div class="container"> -->
         <!-- <div class="row no-gutters slider-text align-items-end justify-content-start">
@@ -48,7 +48,7 @@
                 <div class="row">
                     <div class="col-md-12">
                         <div class="team d-md-flex p-4 bg-white">
-                            <div class="img" style="background-image: url(images/person_1.jpg);"></div>
+                            <div class="img" style="background-image: url('<?php echo base_url('assets/upload/perusahaan/').$lowongan->foto_perusahaan ?>');background-size:200px"></div>
                             <div class="text pl-md-4">
                                 <div class="d-flex flex-row justify-content-between">
                                     <div class="">
@@ -92,40 +92,36 @@
             <div class="col-lg-4 sidebar">
                 <div class="sidebar-box bg-white p-4 ftco-animate">
                     <h3 class="heading-sidebar">Cari Lowongan lain</h3>
-                    <form action="#" class="search-form mb-3">
+                    <form action="<?php echo base_url('lowongan/kategori') ?>" method="POST" class="search-form mb-3">
                         <div class="form-group">
-                            <select name="kategori" id="kategori" class="form-control chosen-select">
+                            <select name="kategori" id="kategoriPencarian" class="form-control chosen-select">
                                 <option value="">Semua Kategori</option>
-                                <?php foreach($getJabatan as $jabatan) { ?>
-                                    <option value="<?php echo $jabatan->id_jabatan ?>"><?php echo $jabatan->nama ?></option>
+                                <?php foreach($getKategori as $kategori) { ?>
+                                    <option value="<?php echo $kategori->nama ?>"><?php echo $kategori->nama ?></option>
                                 <?php }?>
                             </select>
                         </div>
-                    </form>
-                    <h3 class="heading-sidebar mt-5">Pilih Lokasi</h3>
-                    <form action="#" class="search-form mb-3">
+                        <h3 class="heading-sidebar mt-5">Pilih Lokasi</h3>
                         <div class="form-group">
-                            <select name="lokasi" id="lokasi" class="form-control chosen-select" style="width: 250px; position:fixed; z-index:99999">
+                            <select name="lokasi" id="lokasiPencarian" class="form-control chosen-select" style="width: 250px; position:fixed; z-index:99999">
                                 <option value="">Semua Lokasi</option>
                                 <?php foreach($wilayah as $wilayah) { ?>
-                                    <option value="<?php echo $wilayah->id ?>"><?php echo $wilayah->name ?></option>
+                                    <option value="<?php echo $wilayah->name ?>"><?php echo $wilayah->name ?></option>
                                 <?php }?>
                             </select>
                         </div>
-                    </form>
-                    <h3 class="heading-sidebar mt-5">Tipe Pekerjaan</h3>
-                    <form action="#" class="browse-form">
-                        <select name="tipe" id="tipe" class="form-control chosen-select">
+                        <h3 class="heading-sidebar mt-5">Tipe Pekerjaan</h3>
+                        <select name="tipe" id="tipePencarian" class="form-control chosen-select">
                             <option value="">Semua tipe pekerjaan</option>
                             <option value="Full Time">Full Time</option>
                             <option value="Part Time">Part Time</option>
                             <option value="Internship">Internship</option>
                             <option value="Freelance">Freelance</option>
                         </select>
+                        <p class="mt-5">
+                            <button type="submit" name="cariLowongan" class="btn btn-primary btn-block">Cari</button>
+                        </p>
                     </form>
-                    <p class="mt-5">
-                        <a href="#" class="btn btn-primary btn-block">Cari</a>
-                    </p>
                 </div>
             </div>
         </div>

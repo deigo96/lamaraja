@@ -201,6 +201,39 @@ $(document).ready(function(){
                 .trigger('chosen:updated');
         }
     });
+
+    function unReadNotification(view = ''){
+        $.ajax({
+            url:baseUrl+"perusahaan/profile_perusahaan/notifikasiPerusahaan",
+            method:"POST",
+            data:{view:view},
+            dataType:"json",
+            success:function(data){
+                console.log(data)
+            }
+        })
+    }
+
+    unReadNotification();
+
+    $(function(){
+        var status  = $('#status-perusahaan').val();
+        if(status == '0'){
+            Swal.fire({
+                title: 'Profile',
+                text: "Profile anda belum lengkap, Mohon lengkapi profile!",
+                icon: 'error',
+                allowOutsideClick: false,
+                allowEscapeKey: false,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Profile',
+            }).then(result => {
+                if(result.isConfirmed){
+                    window.location.href = baseUrl+'perusahaan/profile_perusahaan/index/'+namaPerusahaanLowongan
+                }
+            })
+        }
+    })
 });
 
 $("#addRowKualifikasi").click(function () {
@@ -454,3 +487,55 @@ $('#tolakPelamar').click(function(){
         }
     })
 });
+
+function deleteLowongan(id){
+    swal.fire({
+        title: 'Peringatan',
+        text: "Apakah anda yakin ingin menghapus lowongan ini?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya!',
+        cancelButtonText: 'Tidak!'
+    }).then(result =>{
+        if(result.isConfirmed){
+            $.ajax({
+                url: baseUrl+'perusahaan/profile_perusahaan/hapus_lowongan/' + id,
+                type: "POST",
+                data: {idLowongan: id},
+                success: function(data){
+                    if(data == "true"){
+                        Swal.fire(
+                            'Berhasil!',
+                            'Lowongan Berhasil Dihapus',
+                            'success'
+                        ).then((result) => {
+                            location.reload();
+                        });
+                        
+                    }else{
+                        Swal.fire(
+                            'Gagal Menghapus Lowongan', 
+                            '', 
+                            'error'
+                        )
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    Swal.fire(
+                        'Gagal Menghapus Lowongan', 
+                        '', 
+                        'error'
+                    )
+                }
+            })
+        }else if (result.dismiss ) {
+            Swal.fire(
+                'Batal Menghapus Lowongan', 
+                '', 
+                'error'
+            )
+        }
+    })
+}

@@ -10,12 +10,15 @@ class Profile extends CI_Controller {
 
 	public function lihat_profile($id)
 	{
-		$data['id_user']	= $this->session->userdata('id_user');
 		if(userLog()){
 			$id         = $this->session->userdata('id_user');
 			$userData   = $this->M_user->getUserData($id);
             $userProfile= $this->M_user->getProfile($id);
 
+            $data['lamaranUser']    = $this->M_user->lamaranUser($id);
+            $data['countLamaran']   = $this->M_user->countLamaran($id);
+            $data['countDiterima']  = $this->M_user->countDiterima($id);
+            $data['countDitolak']   = $this->M_user->countDitolak($id);
 			$data['userData']       = $userData;
 			$data['userProfile']    = $userProfile;
             $this->load->view('templates/header');
@@ -24,6 +27,7 @@ class Profile extends CI_Controller {
             $this->load->view('templates/footer');
 		}
 		else{
+            redirect('login');
 		}
 		// $this->session->sess_destroy();
 	}

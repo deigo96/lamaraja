@@ -14,13 +14,13 @@ class Tambah_lowongan extends CI_Controller {
 	public function index()
 	{
         if(companyLog()){
+			$id             = $this->session->userdata('id_perusahaan');
             $data['id_perusahaan']	= $this->session->userdata('id_perusahaan');
             $data['getKategori']    = $this->M_jabatan->getAllKategori();
             $data['getJabatan']     = $this->M_jabatan->getAllJabatan();
 			$data['getProvinsi']    = $this->M_wilayah->getAllProvinsi();
-			$id             = $this->session->userdata('id_perusahaan');
-			$getData        = $this->M_Perusahaan->getAllData($id);
-			$data['getData']= $getData;
+            $data['kontak']         = $this->M_Perusahaan->getProfilePerusahaan($id);
+			$data['getData']        = $this->M_Perusahaan->getAllData($id);
             $this->load->view('templates/header');
             $this->load->view('perusahaan/topbar_perusahaan', $data);
             $this->load->view('perusahaan/tambah_lowongan', $data);

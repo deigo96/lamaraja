@@ -1,4 +1,4 @@
-<div class="hero-wrap hero-wrap-3" style="background-image: url('images/bg_1.jpg');" data-stellar-background-ratio="0.5">
+<div class="hero-wrap hero-wrap-3" style="background-image: url('<?php echo base_url('assets/images/bg_1.jpg') ?>');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text align-items-end justify-content-start">
@@ -32,19 +32,6 @@
                                     alt="Foto profile user">
                             </div>
                             <h3 class="profile-username text-center"><?php echo $getKandidat->nama ?></h3>
-                            <p class="text-muted text-center">Software Engineer</p>
-                            <ul class="list-group list-group-unbordered mb-3">
-                                <li class="list-group-item">
-                                    <b>Followers</b> <a class="float-right">1,322</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Following</b> <a class="float-right">543</a>
-                                </li>
-                                <li class="list-group-item">
-                                    <b>Friends</b> <a class="float-right">13,287</a>
-                                </li>
-                            </ul>
-                            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -59,20 +46,20 @@
                         <div class="card-body">
                             <strong><i class="icon icon-book mr-1"></i> Pendidikan</strong>
                             <p class="text-muted" style="margin-bottom: 0;">
-                                <?php echo !empty($userProfile) ? $userProfile->pendidikan_terakhir.' <p class="text-muted" style="margin-bottom: 0;">'.$userProfile->nama_institusi.'</p class="text-muted"><p>'.$userProfile->jurusan.'</p>' : "" ?>
+                                <?php echo !empty($getKandidat) ? $getKandidat->pendidikan_terakhir.' <p class="text-muted" style="margin-bottom: 0;">'.$getKandidat->nama_institusi.'</p class="text-muted"><p>'.$getKandidat->jurusan.'</p>' : "" ?>
                             </p>
                             <hr>
                             <strong><i class="icon icon-map-marker mr-1"></i> Alamat</strong>
-                            <p class="text-muted"><?php echo !empty($userProfile) ? $userProfile->alamat : "" ?></p>
+                            <p class="text-muted"><?php echo !empty($getKandidat) ? $getKandidat->alamat : "" ?></p>
                             <hr>
                             <strong><i class="icon icon-pencil mr-1"></i> Keahlian</strong>
                             <p class="text-muted">
-                                <?php echo !empty($userProfile) ? $userProfile->keahlian : "" ?>
+                                <?php echo !empty($getKandidat) ? $getKandidat->keahlian : "" ?>
                             </p>
                             <hr>
                             <strong><i class="icon icon-file mr-1"></i> Deskripsi</strong>
                             <p class="text-muted">
-                                <?php echo !empty($userProfile) ? $userProfile->deskripsi : "" ?>
+                                <?php echo !empty($getKandidat) ? $getKandidat->deskripsi : "" ?>
                             </p>
                         </div>
                         <!-- /.card-body -->
