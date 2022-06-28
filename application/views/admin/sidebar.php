@@ -25,11 +25,11 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">User</span></a>
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Laporan</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
-                            <li><a title="All Library" href="library-assets.html"><span class="mini-sub-pro">Library Assets</span></a></li>
-                            <li><a title="Add Library" href="add-library-assets.html"><span class="mini-sub-pro">Add Library Asset</span></a></li>
-                            <li><a title="Edit Library" href="edit-library-assets.html"><span class="mini-sub-pro">Edit Library Asset</span></a></li>
+                            <li><a title="All Library" href="<?php echo base_url('admin/laporan/lowongan') ?>"><span class="mini-sub-pro">Lowongan</span></a></li>
+                            <li><a title="Add Library" href="<?php echo base_url('admin/laporan/pelamar') ?>"><span class="mini-sub-pro">Pelamar</span></a></li>
+                            <!-- <li><a title="Edit Library" href="edit-library-assets.html"><span class="mini-sub-pro">Edit Library Asset</span></a></li> -->
                         </ul>
                     </li>
                     <!-- <li>
