@@ -95,7 +95,7 @@ class Profile_perusahaan extends CI_Controller {
                 else{
                     $fileName = $this->upload->data();
                     $data['foto_perusahaan'] = $fileName['file_name'];
-                    $data['tanggal_update'] = date('d-m-Y H:i');
+                    $data['tanggal_update'] = date('Y-m-d H:i:s');
                 }
             }
             else if(!empty($checkProfile->foto)){

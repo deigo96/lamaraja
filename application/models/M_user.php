@@ -248,7 +248,7 @@ class M_user extends CI_Model {
     public function getNotif($id)
     {
         $query = $this->db->query("SELECT COUNT(proses_lowongan.notif_user) as notif FROM `proses_lowongan`
-                                    WHERE proses_lowongan.id_user = '$id' AND proses_lowongan.notif_user = '0'");
+                                    WHERE proses_lowongan.id_user = '$id' AND proses_lowongan.status != '0'  AND proses_lowongan.notif_user = '0'");
         return $query->row();
     }
 

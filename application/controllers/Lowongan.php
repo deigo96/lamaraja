@@ -65,7 +65,7 @@ class Lowongan extends CI_Controller {
 				$data = array(
 					'id_user' => $idUser,
 					'id_lowongan' => $idLowongan,
-					'tanggal' => date('d-m-Y H:i')
+					'tanggal' => date('Y-m-d H:i:s')
 				);
 				$applied 	= $this->M_user->applied($data);
 				if($applied)

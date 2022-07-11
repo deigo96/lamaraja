@@ -86,6 +86,52 @@ $(document).ready(function(){
             },
         }
     });
+
+    $('#form-tambah-kategori').validate({
+        rules: {
+            namaKategori: {
+                required: true,
+                remote: {
+                    url: baseUrl+'admin/kategori/checkKategori',
+                    type: "post",
+                    data: {
+                        namaKategori: function() {
+                            return $( "#namaKategori" ).val();
+                        }
+                    }
+                }
+            },
+        },
+        messages: {
+            namaKategori: {
+                required: "Nama kategori tidak boleh kosong",
+                remote: "Nama kategori sudah ada"
+            },
+        }
+    });
+
+    $('#edit-form-kategori').validate({
+        rules: {
+            nama: {
+                required: true,
+                remote: {
+                    url: baseUrl+'admin/kategori/checkEditKategori',
+                    type: "post",
+                    data: {
+                        nama: function() {
+                            return $( "#edit_nama_kategori" ).val();
+                        },
+                    }
+                }
+            },
+        },
+        messages: {
+            nama: {
+                required: "Nama kategori tidak boleh kosong",
+                remote: "Nama kategori sudah ada"
+            },
+        }
+    });
 });
 
 var formJabatan = $( "#form-jabatan" );
@@ -258,4 +304,182 @@ function hapusJabatan(id){
             )
         }
     })
+
+    
+}
+
+var formKategori = $( "#form-tambah-kategori" );
+$("#form-tambah-kategori").on('submit', function(e){
+    if(formKategori.valid()){
+        e.preventDefault();
+        Swal.fire({
+            title: 'Apakah anda yakin ingin menyimpan data?',
+            text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: baseUrl+'admin/kategori/submit_kategori',
+                    type: "POST",
+                    data: new FormData(this),
+                    processData: false,
+                    cache: false,
+                    contentType: false,
+                    success: function(data){
+                        if(data == "true"){
+                            Swal.fire(
+                                'Disimpan!',
+                                'Data anda berhasil disimpan.',
+                                'success'
+                            ).then((result) => {
+                                window.location.href = baseUrl+'admin/kategori/semua_kategori/'
+                            });
+                            
+                        }else{
+                            Swal.fire(
+                                'Data gagal disimpan', 
+                                '', 
+                                'error'
+                            )
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire(
+                            'Data gagal disimpan', 
+                            '', 
+                            'error'
+                        )
+                    }
+                })
+                // console.log("berhasil");
+            }else if (result.dismiss ) {
+                Swal.fire(
+                    'Data gagal disimpan', 
+                    '', 
+                    'error'
+                )
+            }
+        })
+    };
+});
+
+var editkategori = $( "#edit-form-kategori" );
+$("#edit-form-kategori").on('submit', function(e){
+    if(editkategori.valid()){
+        e.preventDefault();
+        Swal.fire({
+            title: 'Apakah anda yakin ingin menyimpan data?',
+            text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya!',
+            cancelButtonText: 'Tidak!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: baseUrl+'admin/kategori/updateKategori/'+id,
+                    type: "POST",
+                    data: new FormData(this),
+                    processData: false,
+                    cache: false,
+                    contentType: false,
+                    success: function(data){
+                        if(data == "true"){
+                            Swal.fire(
+                                'Disimpan!',
+                                'Data anda berhasil diupdate.',
+                                'success'
+                            ).then((result) => {
+                                window.location.href = baseUrl+'admin/kategori/semua_kategori/'
+                            });
+                            
+                        }else{
+                            Swal.fire(
+                                'Data gagal disimpan', 
+                                '', 
+                                'error'
+                            )
+                        }
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        Swal.fire(
+                            'Data gagal disimpan', 
+                            '', 
+                            'error'
+                        )
+                    }
+                })
+                // console.log("berhasil");
+            }else if (result.dismiss ) {
+                Swal.fire(
+                    'Data gagal disimpan', 
+                    '', 
+                    'error'
+                )
+            }
+        })
+    };
+});
+
+function hapusKategori(id){
+    Swal.fire({
+        title: 'Apakah anda yakin ingin menyimpan data?',
+        text: "",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Ya!',
+        cancelButtonText: 'Tidak!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            $.ajax({
+                url: baseUrl+'admin/kategori/hapus_kategori/'+id,
+                type: "POST",
+                processData: false,
+                cache: false,
+                contentType: false,
+                success: function(data){
+                    if(data == "true"){
+                        Swal.fire(
+                            'Disimpan!',
+                            'Data anda berhasil dihapus.',
+                            'success'
+                        ).then((result) => {
+                            window.location.href = baseUrl+'admin/kategori/semua_kategori/'
+                        });
+                        
+                    }else{
+                        Swal.fire(
+                            'Data gagal dihapus', 
+                            '', 
+                            'error'
+                        )
+                    }
+                },
+                error: function (xhr, ajaxOptions, thrownError) {
+                    Swal.fire(
+                        'Data gagal dihapus', 
+                        '', 
+                        'error'
+                    )
+                }
+            })
+        }else if (result.dismiss ) {
+            Swal.fire(
+                'Data batal dihapus', 
+                '', 
+                'error'
+            )
+        }
+    })
+
+    
 }

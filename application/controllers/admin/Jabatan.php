@@ -58,7 +58,8 @@ class Jabatan extends CI_Controller {
             $check = $this->M_jabatan->checkJabatan($nama);
             if($check > 0)
                 echo "false";
-            
+            else
+                echo "true";
         }
     }
 
@@ -68,7 +69,7 @@ class Jabatan extends CI_Controller {
             $data['id_kategori']= $this->input->post('id_kategori');
             $data['nama']       = $this->input->post('nama');
             $data['id_admin']   = $this->session->userdata('id_admin');
-            $data['tanggal']    = date('d-m-Y H:i');
+            $data['tanggal']    = date('Y-m-d H:i:s');
 
             if(!empty($data['id_kategori']) && !empty($data['nama'])){
                 $this->M_jabatan->tambahJabatan($data);

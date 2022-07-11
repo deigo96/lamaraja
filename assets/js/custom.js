@@ -96,12 +96,12 @@ $("#updateProfileForm").on('submit', function(e){
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    // Swal.fire(
-                    //     'Data gagal disimpan', 
-                    //     '', 
-                    //     'error'
-                    // )
-                    console.log(thrownError);
+                    Swal.fire(
+                        'Data gagal disimpan', 
+                        '', 
+                        'error'
+                    )
+                    // console.log(thrownError);
                 }
             })
         }else if (result.dismiss ) {

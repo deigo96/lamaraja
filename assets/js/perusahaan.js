@@ -107,7 +107,6 @@ $(document).ready(function(){
                 url: baseUrl+'perusahaan/Profile_perusahaan/get_kabupaten/'+idProvinsi,
                 type: "POST",
                 success: function(data){
-                    console.log(data);
                     if(data != "[]"){
                         var obj = jQuery.parseJSON(data);
                         var appendOption = $();
@@ -164,7 +163,6 @@ $(document).ready(function(){
                 url: baseUrl+'perusahaan/Profile_perusahaan/get_kecamatan/'+idKabupaten,
                 type: "POST",
                 success: function(data){
-                    console.log(data);
                     if(data != "[]"){
                         var obj = jQuery.parseJSON(data);
                         var appendOption = $();
@@ -411,7 +409,7 @@ $('#terimaPelamar').click(function(){
                 url: baseUrl+'perusahaan/kandidat/proses_lamaran/' + idLowongan,
                 type: "POST",
                 data: {
-                    proses: '0', 
+                    proses: '1', 
                     idLowongan: idLowongan,
                 },
                 success: function(data){
@@ -444,7 +442,7 @@ $('#terimaPelamar').click(function(){
                                             didOpen: (toast) => {
                                                 toast.addEventListener('mouseenter', Swal.stopTimer)
                                                 toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                            }
+                                            },willClose: function(){location.reload()}
                                         })
                                           
                                         Toast.fire({
@@ -514,7 +512,7 @@ $('#tolakPelamar').click(function(){
             $.ajax({
                 url: baseUrl+'perusahaan/kandidat/proses_lamaran/' + idLowongan,
                 type: "POST",
-                data: {proses: '0', idLowongan: idLowongan},
+                data: {proses: '2', idLowongan: idLowongan},
                 success: function(data){
                     if(data == "true"){
                         Swal.fire(
@@ -545,7 +543,7 @@ $('#tolakPelamar').click(function(){
                                             didOpen: (toast) => {
                                                 toast.addEventListener('mouseenter', Swal.stopTimer)
                                                 toast.addEventListener('mouseleave', Swal.resumeTimer)
-                                            }
+                                            },willClose: function(){location.reload()}
                                         })
                                           
                                         Toast.fire({

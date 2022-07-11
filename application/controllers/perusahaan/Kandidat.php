@@ -58,7 +58,7 @@ class Kandidat extends CI_Controller {
         if(companyLog()){
             $id             = $this->session->userdata('id_perusahaan');
             $data['status'] = $this->input->post('proses');
-            $data['tanggal_proses']= date('d-m-Y H:i');
+            $data['tanggal_proses']= date('Y-m-d H:i:s');
             $proses         = $this->M_Perusahaan->prosesLamaran($data, $idLamaran);
             if($proses)
                 echo "true";

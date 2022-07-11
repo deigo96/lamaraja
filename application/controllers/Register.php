@@ -32,7 +32,7 @@ class Register extends CI_Controller {
             $data['nama_user']      = $this->input->post('nama');
             $data['email']          = $this->input->post('email');
             $data['password']       = hash('md5', $passwordHash);
-            $data['tanggal_daftar'] = date('d-m-Y H:i');
+            $data['tanggal_daftar'] = date('Y-m-d H:i:s');
 
             $register = $this->M_register->register($data);
             if(!$register){

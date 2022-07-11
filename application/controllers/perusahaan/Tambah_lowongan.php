@@ -63,7 +63,7 @@ class Tambah_lowongan extends CI_Controller {
             $data['id_kabupaten']   = $this->input->post('kabupaten');
             $data['pendidikan']     = $this->input->post('pendidikan');
             $data['jurusan']        = $this->input->post('jurusan');
-            $data['tanggal_post']   = date('d-m-Y H:i');
+            $data['tanggal_post']   = date('Y-m-d H:i:s');
             if(!empty($kualifikasi))
                 $data['kualifikasi']= implode('#', $kualifikasi);
             else

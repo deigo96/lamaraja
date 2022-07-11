@@ -11,6 +11,13 @@
                         <a title="Landing Page" href="<?php echo base_url('admin/dashboard') ?>" aria-expanded="false"><span class="educate-icon educate-home icon-wrap sub-icon-mg" aria-hidden="true"></span> <span class="mini-click-non">Dashboard</span></a>
                     </li>
                     <li>
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Kategori</span></a>
+                        <ul class="submenu-angle" aria-expanded="false">
+                            <li><a title="Semua Kategori" href="<?php echo base_url('admin/kategori/semua_kategori') ?>"><span class="mini-sub-pro">Semua Kategori</span></a></li>
+                            <li><a title="Tambah Kategori" href="<?php echo base_url('admin/kategori/tambah_kategori') ?>"><span class="mini-sub-pro">Tambah Kategori</span></a></li>
+                        </ul>
+                    </li>
+                    <li>
                         <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-department icon-wrap"></span> <span class="mini-click-non">Jabatan</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="Semua Jabatan" href="<?php echo base_url('admin/jabatan/semua_jabatan') ?>"><span class="mini-sub-pro">Semua Jabatan</span></a></li>
@@ -18,7 +25,7 @@
                         </ul>
                     </li>
                     <li>
-                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-professor icon-wrap"></span> <span class="mini-click-non">Laporan</span></a>
+                        <a class="has-arrow" href="all-courses.html" aria-expanded="false"><span class="educate-icon educate-course icon-wrap"></span> <span class="mini-click-non">Laporan</span></a>
                         <ul class="submenu-angle" aria-expanded="false">
                             <li><a title="All Library" href="<?php echo base_url('admin/laporan/lowongan') ?>"><span class="mini-sub-pro">Lowongan</span></a></li>
                             <li><a title="Add Library" href="<?php echo base_url('admin/laporan/pelamar') ?>"><span class="mini-sub-pro">Pelamar</span></a></li>

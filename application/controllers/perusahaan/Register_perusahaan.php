@@ -23,7 +23,7 @@ class Register_perusahaan extends CI_Controller {
         $data['email_login']    = $this->input->post('email_login');
         $data['no_telp']        = $this->input->post('no_telp');
         $data['password']       = hash('md5', $passwordHash);
-        $data['tanggal_daftar'] = date('d-m-Y H:i');
+        $data['tanggal_daftar'] = date('Y-m-d H:i:s');
 
         $register = $this->M_Perusahaan->registerPerusahaan($data);
         if($register){

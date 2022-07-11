@@ -133,7 +133,7 @@ class M_Perusahaan extends CI_Model {
 
     public function hapusLowongan($idLowongan)
     {
-        $data = date('d-m-Y H:i');
+        $data = date('Y-m-d H:i:s');
         $this->db->where('id_lowongan', $idLowongan);
         return $this->db->update('lowongan', array('status' =>'0', 'tanggal_update'=>$data));
     }

@@ -218,7 +218,7 @@ class Profile extends CI_Controller {
                 $oldFoto    = $this->input->post('old_foto');
                 $fileName = $this->upload->data();
                 $data['foto'] = $fileName['file_name'];
-                $data['tanggal_update'] = date('d-m-Y H:i');
+                $data['tanggal_update'] = date('Y-m-d H:i:s');
             }
         } else if(!empty($checkProfile->foto)){
             $data['foto']   = $checkProfile->foto;

@@ -124,7 +124,7 @@
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-                                <div class="tab-pane" id="timeline">
+                                <div class="tab-pane active" id="timeline">
                                     <div class="timeline timeline-inverse" style="color: white">
                                         <?php foreach ($lamaranUser as $lamaran) { ?>
                                             <div class="time-label">
@@ -169,7 +169,7 @@
                                 </div>
                                 <!-- /.tab-pane -->
 
-                                <div class="tab-pane active" id="settings">
+                                <div class="tab-pane" id="settings">
                                     <form action="#" class="form-horizontal" id="updateProfileForm" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Nama</label>

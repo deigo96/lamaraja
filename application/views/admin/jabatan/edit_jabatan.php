@@ -9,7 +9,7 @@
         <div class="sparkline10-list mg-tb-30 responsive-mg-t-0 table-mg-t-pro-n dk-res-t-pro-0 nk-ds-n-pro-t-0">
             <div class="sparkline10-hd">
                 <div class="main-sparkline10-hd">
-                    <h1>Tambah Jabatan</h1>
+                    <h1>Edit Jabatan</h1>
                 </div>
             </div>
             <div class="sparkline10-graph">
