@@ -19,10 +19,10 @@
                 <?php if(isset($userData)): ?>
                     <div class="btn-group">
                         <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <?php echo $userData->nama_user ?> </span>
+                            <?php echo $userData->nama_user ?> <span class="notif-pelamar"></span>
                         </button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" href="<?php echo base_url('Profile/lihat_profile/').$userData->id_user ?>"><i class="icon icon-user"></i> Profile</span></a>
+                            <a class="dropdown-item resetNotifUser" href="<?php echo base_url('Profile/lihat_profile/').$userData->id_user ?>"><i class="icon icon-user"></i> Profile <span class="notif-pelamar"></span></a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#" id="logOut"><i class="icon icon-sign-out"></i> Keluar</a>
                         </div>

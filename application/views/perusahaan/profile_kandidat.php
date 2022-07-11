@@ -4,7 +4,7 @@
         <div class="row no-gutters slider-text align-items-end justify-content-start">
             <div class="col-md-12 ftco-animate text-center mb-5">
                 <p class="breadcrumbs mb-0"><span class="mr-3"><a href="index.html">Home <i class="ion-ios-arrow-forward"></i></a></span> <span>Profile</span></p>
-                <h1 class="mb-3 bread">Buat Profile Terbaikmu</h1>
+                <h1 class="mb-3 bread">Profile Kandidat</h1>
             </div>
         </div>
     </div>
@@ -85,6 +85,12 @@
                                         </div>
                                     </div>
                                     <div class="form-group row">
+                                        <label for="inputJenkel" class="col-sm-2 col-form-label">Email</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="jenkel" class="form-control" id="inputJenkel" value="<?php echo !empty($getKandidat) ? $getKandidat->jenis_kelamin : '' ?>" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
                                         <label for="inputTanggalLahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control" name="tanggal_lahir" id="inputTanggalLahir"  value="<?php echo !empty($getKandidat) ? date('d M Y', strtotime($getKandidat->tanggal_lahir)) : '' ?>" readonly>
@@ -126,6 +132,27 @@
                                             <textarea class="form-control" name="keahlian" id="inputKeahlian" placeholder="Keahlian" readonly><?php echo !empty($getKandidat) ? $getKandidat->keahlian : '' ?></textarea>
                                         </div>
                                     </div>
+                                    <?php if(!empty($getKandidat->resume)) { ?>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <a href="<?php echo !empty($getKandidat) ? base_url('assets/upload/dokumen/').$getKandidat->resume : "#" ?>" target="blank" class="btn btn-block btn-info">LIHAT RESUME</a>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                    <?php if(!empty($getKandidat->ijazah)) { ?>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <a href="<?php echo !empty($getKandidat) ? base_url('assets/upload/dokumen/').$getKandidat->ijazah : "#" ?>" target="blank" class="btn btn-block btn-info">LIHAT IJAZAH</a>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
+                                    <?php if(!empty($getKandidat->transkip_nilai)) { ?>
+                                        <div class="form-group row">
+                                            <div class="offset-sm-2 col-sm-10">
+                                                <a href="<?php echo !empty($getKandidat) ? base_url('assets/upload/dokumen/').$getKandidat->transkip_nilai : "#" ?>" target="blank" class="btn btn-block btn-info">LIHAT TRANSKIP NILAI</a>
+                                            </div>
+                                        </div>
+                                    <?php } ?>
                                     <div class="form-group row">
                                         <div class="offset-sm-2 col-sm-10">
                                             <?php if($getKandidat->status_lamaran == 0) { ?>
@@ -155,5 +182,11 @@
 <script>
     var baseUrl = "<?php echo base_url() ?>";
     var id = <?php echo $this->session->userdata('id_perusahaan') ?>;
-    var idLowongan = <?php echo $getKandidat->id_proses_lowongan ?>
+    var idLowongan = <?php echo $getKandidat->id_proses_lowongan ?>;
+    var namaPelamar = '<?php echo $getKandidat->nama ?>';
+    var emailPelamar = '<?php echo $getKandidat->email_pelamar ?>';
+    var namaJabatan = '<?php echo $getKandidat->nama_jabatan ?>';
+    var namaPerusahaan = '<?php echo $getKandidat->nama_perusahaan ?>';
+    var tipePekerjaan = '<?php echo $getKandidat->tipePekerjaan ?>';
+    var kontakEmail = '<?php echo $getKandidat->kontak_email ?>';
 </script>

@@ -70,4 +70,37 @@ class Kandidat extends CI_Controller {
             echo "false";
         }
     }
+
+    function sendMail()
+    {
+        $email  = $this->input->post('email');
+        $subject= $this->input->post('subject');
+        $pesan  = $this->input->post('pesan');
+        // $to     = $this->input->post('emailPelamar');
+        $config = Array(
+            'protocol' => 'smtp',
+            'smtp_host' => 'ssl://smtp.gmail.com',
+            'smtp_port' => 465,
+            'smtp_user' => 'deigosiahaan@gmail.com', // change it to yours
+            'smtp_pass' => 'pqsmrzxwvoavmzto', // change it to yours
+            'mailtype' => 'html',
+            'charset' => 'iso-8859-1',
+            // 'wordwrap' => TRUE
+        );
+
+        $this->load->library('email', $config);
+        $this->email->initialize($config);
+        $this->email->set_newline("\r\n");
+        $this->email->from('deigojonathan@gmail.com'); // change it to yours
+        $this->email->to($email);// change it to yours
+        $this->email->subject($subject);
+        $this->email->message($pesan);
+        if($this->email->send()) {
+            echo "true";
+        }
+        else {
+            show_error($this->email->print_debugger());
+        }
+
+    }
 }

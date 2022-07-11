@@ -13,8 +13,15 @@ class Dashboard extends CI_Controller {
         if(adminLog()){
             $idAdmin            = $this->session->userdata('id_admin');
 
-            $data['page_title'] = 'Dashboard';
-            $data['getAdmin']   = $this->M_admin->getAdminData($idAdmin);
+            $data['countUser']      = $this->M_admin->countUser();
+            $data['countPerusahaan']= $this->M_admin->countPerusahaan();
+            $data['countLowongan']  = $this->M_admin->countLowongan();
+            $data['countJabatan']   = $this->M_admin->countJabatan();
+            $data['userBaru']       = $this->M_admin->getUserBaru();
+            $data['peruBaru']       = $this->M_admin->getPerusahaanBaru();
+            $data['lowoBaru']       = $this->M_admin->getLowonganBaru();
+            $data['page_title']     = 'Dashboard';
+            $data['getAdmin']       = $this->M_admin->getAdminData($idAdmin);
             $this->load->view('admin/header',$data);
             $this->load->view('admin/sidebar');
             $this->load->view('admin/topbar');

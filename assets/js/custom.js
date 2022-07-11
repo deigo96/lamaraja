@@ -24,6 +24,31 @@ $(document).ready(function(){
             }
         });
     });
+
+    $(function() {
+        $.ajax({
+            url:baseUrl+"profile/notifikasiPelamar",
+            method:"POST",
+            // data:{view:view},
+            dataType:"json",
+            success:function(data){
+                if(data.notif > 0) {
+                    $('span.notif-pelamar').addClass("badge badge-danger navbar-badge").append(data.notif);
+                }
+            }
+        })
+    })
+
+    $('.resetNotifUser').on('click', function(){
+        $.ajax({
+            url:baseUrl+"profile/removeNotifikasiPelamar",
+            method:"POST",
+            data:{status:'0'},
+            dataType:"json",
+            success:function(data){
+            }
+        })
+    })
 });
 
 $("#updateProfileForm").on('submit', function(e){
@@ -56,10 +81,10 @@ $("#updateProfileForm").on('submit', function(e){
                             window.location.href = baseUrl+'Profile/lihat_profile/'+id
                         });
                         
-                    }else if(data == "error"){
+                    }else if(data == "false"){
                         Swal.fire(
-                            'Data gagal disimpan', 
-                            'Format foto tidak sesuai', 
+                            'Format file tidak sesuai', 
+                            'Format file harus <b>PDF</b> dan <i>max 2 MB</i>', 
                             'error'
                         )
                     }else{
@@ -71,11 +96,12 @@ $("#updateProfileForm").on('submit', function(e){
                     }
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
-                    Swal.fire(
-                        'Data gagal disimpan', 
-                        '', 
-                        'error'
-                    )
+                    // Swal.fire(
+                    //     'Data gagal disimpan', 
+                    //     '', 
+                    //     'error'
+                    // )
+                    console.log(thrownError);
                 }
             })
         }else if (result.dismiss ) {
@@ -210,4 +236,55 @@ $(function(){
         var self = this;
         $(self).autocomplete( "search", "");;
     });
+
 });
+
+$('#fotoUpload').on('change', function(){
+    if($('#fotoUpload'.value != "")){
+        $('.uploadFoto').show();
+    }
+    else{
+        $('.uploadFoto').hide();
+    }
+})
+
+$('#buttonUploadFoto').on('click', function(){
+    var file_data = $('#fotoUpload').prop('files')[0];   
+    var form_data = new FormData();        
+    var old_foto = $('#oldFoto').val();          
+    form_data.append('file', file_data);
+    form_data.append('old_foto', old_foto);                             
+    $.ajax({
+        url: baseUrl+'profile/uploadFoto/'+id,
+        dataType: 'text', 
+        cache: false,
+        contentType: false,
+        processData: false,
+        data: form_data,                         
+        type: 'post',
+        success: function(data){
+            if(data == "true"){
+                Swal.fire(
+                    'Disimpan!',
+                    'Foto berhasil diupdate.',
+                    'success'
+                ).then((result) => {
+                    window.location.href = baseUrl+'Profile/lihat_profile/'+id
+                });
+                
+            }else if(data == "error"){
+                Swal.fire(
+                    'Data gagal disimpan', 
+                    'Format foto tidak sesuai', 
+                    'error'
+                )
+            }else{
+                Swal.fire(
+                    'Data gagal disimpan', 
+                    '', 
+                    'error'
+                )
+            }
+        }
+     });
+})

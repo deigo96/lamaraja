@@ -158,7 +158,21 @@ class Profile_perusahaan extends CI_Controller {
 
     public function notifikasiPerusahaan()
     {
-        echo "berhasil";
+        if(companyLog()){
+            $idPerusahaan   = $this->session->userdata('id_perusahaan');
+            $notif          = $this->M_Perusahaan->getNotif($idPerusahaan);
+            echo json_encode($notif);
+        }
+    }
+
+    public function removeNotifikasiPerusahaan()
+    {
+        if(companyLog()){
+            $data           = $this->input->post('status');
+            $idPerusahaan   = $this->session->userdata('id_perusahaan');
+            $removeNotif    = $this->M_Perusahaan->removeNotif($idPerusahaan, $data);
+            echo json_encode($removeNotif);
+        }
     }
 
     public function hapus_lowongan($idLowongan)

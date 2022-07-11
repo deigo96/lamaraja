@@ -92,7 +92,7 @@ class M_user extends CI_Model {
                                     LEFT JOIN provinces ON lowongan.id_provinsi = provinces.id
                                     LEFT JOIN regencies ON lowongan.id_kabupaten = regencies.id
                                     WHERE $checkKategori
-                                    ORDER BY nama_jabatan ASC");
+                                    ORDER BY nama_jabatan ASC LIMIT 5");
         return $query->result();
     }
 
@@ -173,7 +173,7 @@ class M_user extends CI_Model {
         $query = $this->db->query("SELECT profile_perusahaan.*, count(lowongan.id_perusahaan) as jumlah_posisi
                                     FROM profile_perusahaan
                                     LEFT JOIN lowongan ON profile_perusahaan.id_perusahaan = lowongan.id_perusahaan
-                                        ORDER BY id_perusahaan DESC
+                                        GROUP BY lowongan.id_perusahaan ORDER BY count(lowongan.id_perusahaan) DESC
                                     ");
         return $query->result();
     }
@@ -223,7 +223,7 @@ class M_user extends CI_Model {
                                     LEFT JOIN jabatan ON lowongan.id_jabatan = jabatan.id_jabatan
                                     LEFT JOIN perusahaan ON lowongan.id_perusahaan = perusahaan.id_perusahaan
                                         WHERE proses_lowongan.id_user = '$id'
-                                        ORDER BY proses_lowongan.id_proses_lowongan ASC");
+                                        ORDER BY proses_lowongan.id_proses_lowongan DESC");
         return $query->result();
     }
 
@@ -243,5 +243,20 @@ class M_user extends CI_Model {
     {
         $query = $this->db->query("SELECT COUNT(status) AS ditolak FROM `proses_lowongan` WHERE id_user = '$id' AND status = '2'");
         return $query->row();
+    }
+
+    public function getNotif($id)
+    {
+        $query = $this->db->query("SELECT COUNT(proses_lowongan.notif_user) as notif FROM `proses_lowongan`
+                                    WHERE proses_lowongan.id_user = '$id' AND proses_lowongan.notif_user = '0'");
+        return $query->row();
+    }
+
+    public function removeNotif($id, $data)
+    {
+        $query = $this->db->query("UPDATE proses_lowongan
+                                    SET proses_lowongan.notif_user = '1'
+                                    WHERE proses_lowongan.id_user = '$id'");
+        return $query;
     }
 }

@@ -346,7 +346,7 @@
 
 
 
-<section class="ftco-section testimony-section">
+<!-- <section class="ftco-section testimony-section">
     <div class="container">
         <div class="row justify-content-center mb-4">
             <div class="col-md-7 text-center heading-section ftco-animate">
@@ -431,7 +431,7 @@
             </div>
         </div>
     </div>
-</section>
+</section> -->
 
 <!-- <section class="ftco-section ftco-candidates bg-primary">
     <div class="container">

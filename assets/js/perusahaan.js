@@ -202,19 +202,30 @@ $(document).ready(function(){
         }
     });
 
-    function unReadNotification(view = ''){
+    $(function() {
         $.ajax({
             url:baseUrl+"perusahaan/profile_perusahaan/notifikasiPerusahaan",
             method:"POST",
-            data:{view:view},
+            // data:{view:view},
             dataType:"json",
             success:function(data){
-                console.log(data)
+                if(data.notif > 0) {
+                    $('span.notif-perusahaan').addClass("badge badge-danger navbar-badge").append(data.notif);
+                }
             }
         })
-    }
+    })
 
-    unReadNotification();
+    $('.resetNotifPerusahaan').on('click', function(){
+        $.ajax({
+            url:baseUrl+"perusahaan/profile_perusahaan/removeNotifikasiPerusahaan",
+            method:"POST",
+            data:{status:'0'},
+            dataType:"json",
+            success:function(data){
+            }
+        })
+    })
 
     $(function(){
         var status  = $('#status-perusahaan').val();
@@ -399,15 +410,67 @@ $('#terimaPelamar').click(function(){
             $.ajax({
                 url: baseUrl+'perusahaan/kandidat/proses_lamaran/' + idLowongan,
                 type: "POST",
-                data: {proses: '1', idLowongan: idLowongan},
+                data: {
+                    proses: '0', 
+                    idLowongan: idLowongan,
+                },
                 success: function(data){
                     if(data == "true"){
                         Swal.fire(
                             'Berhasil!',
-                            'Lowongan berhasil ditambah.',
+                            'Pelamar telah diterima ketahap selanjutnya.',
                             'success'
                         ).then((result) => {
-                            location.reload();
+                            $.ajax({
+                                url: baseUrl+'perusahaan/kandidat/sendMail',
+                                type: "POST",
+                                data: {
+                                    nama: namaPerusahaan, 
+                                    email: emailPelamar,
+                                    subject: 'Lamaran Anda Telah Berhasil Diterima',
+                                    pesan: 'Hi '+namaPelamar+'<p>Kami telah meninjau lamaran anda sebagai '
+                                                +namaJabatan+' '
+                                                +tipePekerjaan+' di '
+                                                +namaPerusahaan+' dan kami ingin melanjutkan lamaran anda ke tahap selanjutnya yaitu interview. Proses interview akan kami infokan lebih lanjut.</p><p>Terima kasih</p>',
+                                },
+                                success: function(data){
+                                    if(data == "true") {
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        })
+                                          
+                                        Toast.fire({
+                                            icon: 'success',
+                                            title: 'Email telah berhasil dikirim'
+                                        })
+                                    } else {
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        })
+                                          
+                                        Toast.fire({
+                                            icon: 'error',
+                                            title: 'Gagal mengirim email'
+                                        })
+                                    }
+                                }
+                            })
                         });
                         
                     }else{
@@ -420,8 +483,8 @@ $('#terimaPelamar').click(function(){
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     Swal.fire(
-                        'Gagal Menambah Lowongan', 
-                        '', 
+                        'Gagal', 
+                        'Ada Kesalahan', 
                         'error'
                     )
                 }
@@ -451,20 +514,69 @@ $('#tolakPelamar').click(function(){
             $.ajax({
                 url: baseUrl+'perusahaan/kandidat/proses_lamaran/' + idLowongan,
                 type: "POST",
-                data: {proses: '2', idLowongan: idLowongan},
+                data: {proses: '0', idLowongan: idLowongan},
                 success: function(data){
                     if(data == "true"){
                         Swal.fire(
                             'Berhasil!',
-                            'Pelamar berhasil ditolak.',
+                            'Pelamar telah ditolak.',
                             'success'
                         ).then((result) => {
-                            location.reload();
+                            $.ajax({
+                                url: baseUrl+'perusahaan/kandidat/sendMail',
+                                type: "POST",
+                                data: {
+                                    nama: namaPerusahaan, 
+                                    email: emailPelamar,
+                                    subject: 'Lamaran Anda Telah Berhasil Diterima',
+                                    pesan: 'Hi '+namaPelamar+'<p>Kami telah meninjau lamaran anda sebagai '
+                                                +namaJabatan+' '
+                                                +tipePekerjaan+' di '
+                                                +namaPerusahaan+' dan kami ingin menginfokan bahwa lamaran anda tidak akan dilanjutkan.</p><p>Terima kasih karena ingin menjadi bagian dari perusahaan kami</p>',
+                                },
+                                success: function(data){
+                                    if(data == "true") {
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        })
+                                          
+                                        Toast.fire({
+                                            icon: 'success',
+                                            title: 'Email telah berhasil dikirim'
+                                        })
+                                    } else {
+                                        const Toast = Swal.mixin({
+                                            toast: true,
+                                            position: 'top-end',
+                                            showConfirmButton: false,
+                                            timer: 3000,
+                                            timerProgressBar: true,
+                                            didOpen: (toast) => {
+                                                toast.addEventListener('mouseenter', Swal.stopTimer)
+                                                toast.addEventListener('mouseleave', Swal.resumeTimer)
+                                            }
+                                        })
+                                          
+                                        Toast.fire({
+                                            icon: 'error',
+                                            title: 'Gagal mengirim email'
+                                        })
+                                    }
+                                }
+                            })
                         });
                         
                     }else{
                         Swal.fire(
-                            'Gagal Memproses Lowongan', 
+                            'Gagal Menambah Lowongan', 
                             '', 
                             'error'
                         )
@@ -472,8 +584,8 @@ $('#tolakPelamar').click(function(){
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     Swal.fire(
-                        'Gagal Memproses Lowongan', 
-                        '', 
+                        'Gagal', 
+                        'Ada Kesalahan', 
                         'error'
                     )
                 }

@@ -96,18 +96,19 @@ class M_Perusahaan extends CI_Model {
                                     LEFT JOIN profile_users on profile_users.id_user = users.id_user
                                     LEFT JOIN jabatan ON lowongan.id_jabatan = jabatan.id_jabatan
                                     WHERE lowongan.id_perusahaan = '$idPerusahaan' 
-                                        ORDER BY proses_lowongan.tanggal DESC");
+                                        ORDER BY proses_lowongan.id_proses_lowongan DESC");
         return $query->result();
     }
 
     public function getProfileKandidat($idPelamar, $idPerusahaan)
     {
-        $query = $this->db->query("SELECT proses_lowongan.*,proses_lowongan.status as status_lamaran,users.email as email_pelamar,profile_users.*,profile_users.deskripsi as deskripsi_pelamar, lowongan.*, jabatan.nama as nama_jabatan
+        $query = $this->db->query("SELECT proses_lowongan.*,proses_lowongan.status as status_lamaran,users.email as email_pelamar,profile_users.*,profile_users.deskripsi as deskripsi_pelamar, lowongan.*, jabatan.nama as nama_jabatan, profile_perusahaan.nama_perusahaan, profile_perusahaan.kontak_email
                                     FROM `proses_lowongan`
                                     LEFT JOIN lowongan ON proses_lowongan.id_lowongan = lowongan.id_lowongan
                                     LEFT JOIN users ON proses_lowongan.id_user = users.id_user
                                     LEFT JOIN profile_users on profile_users.id_user = users.id_user
                                     LEFT JOIN jabatan ON lowongan.id_jabatan = jabatan.id_jabatan
+                                    LEFT JOIN profile_perusahaan ON lowongan.id_perusahaan = profile_perusahaan.id_perusahaan
                                     WHERE lowongan.id_perusahaan = '$idPerusahaan' AND proses_lowongan.id_proses_lowongan = '$idPelamar'");
         return $query->row();
     }
@@ -135,6 +136,27 @@ class M_Perusahaan extends CI_Model {
         $data = date('d-m-Y H:i');
         $this->db->where('id_lowongan', $idLowongan);
         return $this->db->update('lowongan', array('status' =>'0', 'tanggal_update'=>$data));
+    }
+
+    public function getNotif($id)
+    {
+        $query = $this->db->query("SELECT COUNT(proses_lowongan.status_notifikasi) as notif FROM `perusahaan`
+                                    LEFT JOIN lowongan ON perusahaan.id_perusahaan = lowongan.id_perusahaan
+                                    LEFT JOIN proses_lowongan ON lowongan.id_lowongan = proses_lowongan.id_lowongan
+                                    WHERE lowongan.id_perusahaan = '$id' AND proses_lowongan.status_notifikasi = '0'");
+        return $query->row();
+    }
+
+    public function removeNotif($id, $data)
+    {
+        $query = $this->db->query("UPDATE proses_lowongan
+                                    SET proses_lowongan.status_notifikasi = '1'
+                                    WHERE id_lowongan IN (
+                                        SELECT id_lowongan 
+                                        FROM lowongan 
+                                        JOIN perusahaan ON perusahaan.id_perusahaan = lowongan.id_perusahaan 
+                                        WHERE perusahaan.id_perusahaan = '$id')");
+        return $query;
     }
 
 }

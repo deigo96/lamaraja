@@ -1,3 +1,23 @@
+<style>
+    .form-control {
+        height: 35px !important;
+        font-size: 14px !important;
+        color: #5d5454 !important;
+    }
+
+    .input--file {
+        position: relative;
+        color: #7f7f7f;
+    }
+
+    .input--file input[type="file"] {
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0;
+    }
+</style>
+
 <div class="hero-wrap hero-wrap-3" style="background-image: url('<?php echo base_url('assets/images/bg_1.jpg') ?>');" data-stellar-background-ratio="0.5">
     <div class="overlay"></div>
     <div class="container">
@@ -27,12 +47,25 @@
                     <div class="card card-primary card-outline" style="box-shadow: 0 0 1px rgb(0 0 0 / 13%), 0 1px 3px rgb(0 0 0 / 20%);margin-bottom: 1rem;">
                         <div class="card-body box-profile">
                             <div class="text-center">
-                                <img class="profile-user-img img-fluid img-circle" 
-                                    src="<?php echo !empty($userProfile->foto) ? base_url('assets/upload/profile/').$userProfile->foto : base_url('assets/images/profile_users/user.png') ?>" 
-                                    alt="Foto profile user">
+                                <img class="profile-user-img img-fluid img-circle" style="height: 115px;" src="<?php echo !empty($userProfile->foto) ? base_url('assets/upload/profile/') . $userProfile->foto : base_url('assets/images/profile_users/user.png') ?>" alt="Foto profile user">
+                                <div class="input--file">
+                                    <span>
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                                            <circle cx="12" cy="12" r="3.2" />
+                                            <path d="M9 2l-1.83 2h-3.17c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2v-12c0-1.1-.9-2-2-2h-3.17l-1.83-2h-6zm3 15c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" />
+                                            <path d="M0 0h24v24h-24z" fill="none" />
+                                        </svg>
+                                    </span>
+                                    <input type="hidden" name="oldFoto" id="oldFoto" value="<?php echo !empty($userProfile->foto) ? $userProfile->foto : "" ?>">
+                                    <input name="file" id="fotoUpload" type="file" />
+                                    </script>
+                                </div>
+                            </div>
+                            <div class="uploadFoto" style="display: none;">
+                                <button type="button" id="buttonUploadFoto" class="btn btn-primary btn-block"><b>Upload Foto</b></button>
                             </div>
                             <h3 class="profile-username text-center"><?php echo $userData->nama_user ?></h3>
-                            <p class="text-muted text-center">Software Engineer</p>
+                            <!-- <p class="text-muted text-center">Software Engineer</p> -->
                             <ul class="list-group list-group-unbordered mb-3">
                                 <li class="list-group-item">
                                     <b>Lamaran</b> <a class="float-right"><?php echo $countLamaran->lamaran ?></a>
@@ -44,7 +77,7 @@
                                     <b>Ditolak</b> <a class="float-right"><?php echo $countDitolak->ditolak ?></a>
                                 </li>
                             </ul>
-                            <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a>
+                            <!-- <a href="#" class="btn btn-primary btn-block"><b>Follow</b></a> -->
                         </div>
                         <!-- /.card-body -->
                     </div>
@@ -59,7 +92,7 @@
                         <div class="card-body">
                             <strong><i class="icon icon-book mr-1"></i> Pendidikan</strong>
                             <p class="text-muted" style="margin-bottom: 0;">
-                                <?php echo !empty($userProfile) ? $userProfile->pendidikan_terakhir.' <p class="text-muted" style="margin-bottom: 0;">'.$userProfile->nama_institusi.'</p class="text-muted"><p>'.$userProfile->jurusan.'</p>' : "" ?>
+                                <?php echo !empty($userProfile) ? $userProfile->pendidikan_terakhir . ' <p class="text-muted" style="margin-bottom: 0;">' . $userProfile->nama_institusi . '</p class="text-muted"><p>' . $userProfile->jurusan . '</p>' : "" ?>
                             </p>
                             <hr>
                             <strong><i class="icon icon-map-marker mr-1"></i> Alamat</strong>
@@ -77,7 +110,7 @@
                         </div>
                         <!-- /.card-body -->
                     </div>
-                <!-- /.card -->
+                    <!-- /.card -->
                 </div>
                 <!-- /.col -->
                 <div class="col-md-9">
@@ -91,9 +124,9 @@
                         </div><!-- /.card-header -->
                         <div class="card-body">
                             <div class="tab-content">
-                                <div class="tab-pane active" id="timeline">
+                                <div class="tab-pane" id="timeline">
                                     <div class="timeline timeline-inverse" style="color: white">
-                                        <?php foreach($lamaranUser as $lamaran) { ?>
+                                        <?php foreach ($lamaranUser as $lamaran) { ?>
                                             <div class="time-label">
                                                 <span class="bg-success">
                                                     <?php echo date('d M, Y', strtotime($lamaran->tanggal)) ?>
@@ -106,18 +139,15 @@
                                                     <div class="timeline-body">
                                                         <b><?php echo $lamaran->nama_perusahaan ?> </b>- <?php echo $lamaran->nama  ?>
                                                     </div>
-                                                    <div class="timeline-footer">
-                                                        <a href="#" class="btn btn-primary btn-sm">Read more</a>
-                                                    </div>
-                                                </div>  
+                                                </div>
                                             </div>
-                                            <?php if($lamaran->status != 0) { 
-                                                    if($lamaran->status == '1'){
-                                                        $status = "Menerima";
-                                                    }elseif($lamaran->status == '2'){
-                                                        $status = "Menolak";
-                                                    }   
-                                            ?> 
+                                            <?php if ($lamaran->status != 0) {
+                                                if ($lamaran->status == '1') {
+                                                    $status = "Menerima";
+                                                } elseif ($lamaran->status == '2') {
+                                                    $status = "Menolak";
+                                                }
+                                            ?>
                                                 <div>
                                                     <div class="timeline-item">
                                                         <span class="time"><i class="far fa-clock"></i> <?php echo time_elapsed_string($lamaran->tanggal_proses) ?></span>
@@ -125,14 +155,21 @@
                                                         <h3 class="timeline-header border-0"><b style="color: #206dfb"><?php echo $lamaran->nama_perusahaan ?> </b><?php echo $status ?> lamaran anda
                                                         </h3>
                                                     </div>
-                                                </div>    
-                                            <?php } ?>
-                                        <?php } ?>
+                                                </div>
+                                            <?php } else { ?>
+                                                <div>
+                                                    <div class="timeline-item">
+                                                        <h3 class="timeline-header border-0"><b style="color: #206dfb">Lamaran anda sedang diproses</b>
+                                                        </h3>
+                                                    </div>
+                                                </div>
+                                        <?php }
+                                        } ?>
                                     </div>
                                 </div>
                                 <!-- /.tab-pane -->
 
-                                <div class="tab-pane" id="settings">
+                                <div class="tab-pane active" id="settings">
                                     <form action="#" class="form-horizontal" id="updateProfileForm" enctype="multipart/form-data">
                                         <div class="form-group row">
                                             <label for="inputName" class="col-sm-2 col-form-label">Nama</label>
@@ -147,9 +184,29 @@
                                             </div>
                                         </div>
                                         <div class="form-group row">
+                                            <label for="inputEmail" class="col-sm-2 col-form-label">Jenis Kelamin</label>
+                                            <div class="col-sm-10">
+                                                <?php
+                                                $selected1 = "";
+                                                $selected2 = "";
+                                                if (!empty($userProfile)) {
+                                                    if ($userProfile->jenis_kelamin == "Laki-Laki")
+                                                        $selected1 = "selected";
+                                                    elseif ($userProfile->jenis_kelamin == "Perempuan")
+                                                        $selected2 = "selected";
+                                                }
+                                                ?>
+                                                <select name="jenis_kelamin" id="jenis_kelamin" class="form-control chosen-select">
+                                                    <option value="">Pilih...</option>
+                                                    <option value="Laki-Laki" <?php echo $selected1 ?>>Laki-Laki</option>
+                                                    <option value="Perempuan" <?php echo $selected2 ?>>Perempuan</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
                                             <label for="inputTanggalLahir" class="col-sm-2 col-form-label">Tanggal Lahir</label>
                                             <div class="col-sm-10">
-                                                <input type="date" class="form-control" name="tanggal_lahir" id="inputTanggalLahir"  value="<?php echo !empty($userProfile) ? $userProfile->tanggal_lahir : '' ?>">
+                                                <input type="date" class="form-control" name="tanggal_lahir" id="inputTanggalLahir" value="<?php echo !empty($userProfile) ? $userProfile->tanggal_lahir : '' ?>">
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -189,11 +246,52 @@
                                                 <span><i>Gunakan tanda (-) untuk memisah kalimat</i></span>
                                             </div>
                                         </div>
-                                        <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                             <label for="inputFile" class="col-sm-2 col-form-label">Foto</label>
                                             <div class="col-sm-10">
                                                 <input type="file" name="file" placeholder="Pilih foto" id="file" class="form-control">
-                                                <span><i>Format foto harus (jpg, jpeg, png) max.2MB</i></span>
+                                                <input type="hidden" name="oldFoto" value="<?php echo !empty($userProfile->foto) ? $userProfile->foto : "" ?>">
+                                                <?php if (!empty($userProfile->foto)) {
+                                                    echo "<b>Anda sudah mengupload foto</b>";
+                                                } else {
+                                                    echo "<span><i>Format foto harus (jpg, jpeg, png) max.2MB</i></span>";
+                                                } ?>
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group row">
+                                            <label for="inputFile" class="col-sm-2 col-form-label">CV</label>
+                                            <div class="col-sm-10">
+                                                <input type="file" name="file_upload[]" placeholder="Pilih file" id="resume" class="form-control">
+                                                <input type="hidden" name="oldDokumen[]" value="<?php echo !empty($userProfile->resume) ? $userProfile->resume : "" ?>">
+                                                <?php if (!empty($userProfile->resume)) {
+                                                    echo "<b>Anda sudah mengupload CV</b>";
+                                                } else {
+                                                    echo "<span><i>Format file harus PDF max.2MB</i></span>";
+                                                } ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputFile" class="col-sm-2 col-form-label">Ijazah</label>
+                                            <div class="col-sm-10">
+                                                <input type="file" name="file_upload[]" placeholder="Pilih file" id="ijazah" class="form-control">
+                                                <input type="hidden" name="oldDokumen[]" value="<?php echo !empty($userProfile->ijazah) ? $userProfile->ijazah : "" ?>">
+                                                <?php if (!empty($userProfile->ijazah)) {
+                                                    echo "<b>Anda sudah mengupload Ijazah</b>";
+                                                } else {
+                                                    echo "<span><i>Format file harus PDF max.2MB</i></span>";
+                                                } ?>
+                                            </div>
+                                        </div>
+                                        <div class="form-group row">
+                                            <label for="inputFile" class="col-sm-2 col-form-label">Transkip Nilai</label>
+                                            <div class="col-sm-10">
+                                                <input type="file" name="file_upload[]" placeholder="Pilih file" id="transkip_nilai" class="form-control">
+                                                <input type="hidden" name="oldDokumen[]" value="<?php echo !empty($userProfile->transkip_nilai) ? $userProfile->transkip_nilai : "" ?>">
+                                                <?php if (!empty($userProfile->transkip_nilai)) {
+                                                    echo "<b>Anda sudah mengupload Transkip Nilai</b>";
+                                                } else {
+                                                    echo "<span><i>Format file harus PDF max.2MB</i></span>";
+                                                } ?>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -234,14 +332,14 @@
                                     </form>
                                 </div>
                             </div>
-                        <!-- /.tab-content -->
+                            <!-- /.tab-content -->
                         </div><!-- /.card-body -->
                     </div>
-                <!-- /.card -->
+                    <!-- /.card -->
                 </div>
                 <!-- /.col -->
             </div>
-        <!-- /.row -->
+            <!-- /.row -->
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
