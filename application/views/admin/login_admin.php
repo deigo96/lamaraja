@@ -7,7 +7,7 @@
         <div class="content-error">
             <div class="hpanel">
                 <div class="panel-body">
-                    <form action="<?php echo base_url('admin/Login_admin/check_login') ?>" method="POST" id="loginForm">
+                    <form action="<?php echo base_url('admin/login/check_login') ?>" method="POST" id="loginForm">
                         <div class="form-group">
                             <?php
                                 if($this->session->flashdata('error'))

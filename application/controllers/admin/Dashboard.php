@@ -30,7 +30,7 @@ class Dashboard extends CI_Controller {
 
         }else{
             $this->session->set_flashdata('error', 'Silahkan login');
-            redirect('admin/login_admin');
+            redirect('admin/login');
         }
     }
 

@@ -10,7 +10,8 @@
     border: 1px solid #ccc;
     font-size: 11px;
     }
-    button.tag-cloud-link:hover{
+
+    button.apply-job:hover{
         background-color: #206dfb;
         color: #fff;
         border-color: #206dfb;
@@ -55,11 +56,11 @@
                                         <h6 class="location mb-0"><?php echo $lowongan->nama_kabupaten ?>, <?php echo $lowongan->nama_provinsi ?></h6>
                                         <h2><?php echo $lowongan->nama_jabatan ?></h2>
                                     </div>
-                                    <div class="tagcloud" id="apply-btn">
+                                    <div class="tagcloud">
                                         <?php if(isset($checkLamaran) && $checkLamaran != 0) { ?>
-                                            <button type="button" disabled class="tag-cloud-link">Sudah melamar</button>
+                                            <button type="button" disabled class="tag-cloud-link applied">Sudah melamar</button>
                                         <?php } else{ ?>
-                                            <button type="button" class="tag-cloud-link">Apply Job</button>
+                                            <button type="button" class="tag-cloud-link apply-job" id="apply-btn">Apply Job</button>
                                         <?php } ?>
                                     </div>
                                 </div>

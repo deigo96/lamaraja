@@ -16,7 +16,7 @@ $(document).ready(function(){
                     url: baseUrl+'admin/dashboard/logout',
                     type: "GET",
                     success: function(data) {
-                        window.location.href = baseUrl+'admin/login_admin'
+                        window.location.href = baseUrl+'admin/login'
                     }
 
                 });
