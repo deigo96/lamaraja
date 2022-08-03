@@ -26,14 +26,19 @@
             </div>
             <div class="col-md">
                 <div class="ftco-footer-widget mb-4">
+                    <?php 
+                        $idPerusahaan = $this->session->userdata("id_perusahaan");
+                        if($idPerusahaan == false)
+                            $link = base_url('perusahaan/login_perusahaan');
+                    ?>
                     <h2 class="ftco-heading-2">Employers</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="pb-1 d-block">Browse Candidates</a></li>
-                        <li><a href="#" class="pb-1 d-block">Post a Job</a></li>
-                        <li><a href="#" class="pb-1 d-block">Employer Listing</a></li>
-                        <li><a href="#" class="pb-1 d-block">Resume Page</a></li>
-                        <li><a href="#" class="pb-1 d-block">Dashboard</a></li>
-                        <li><a href="#" class="pb-1 d-block">Job Packages</a></li>
+                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Browse Candidates</a></li>
+                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Post a Job</a></li>
+                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Employer Listing</a></li>
+                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Resume Page</a></li>
+                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Dashboard</a></li>
+                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Job Packages</a></li>
                     </ul>
                 </div>
             </div>
