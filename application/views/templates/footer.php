@@ -24,34 +24,39 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-md">
+            <?php 
+                $idPerusahaan = $this->session->userdata("id_perusahaan");
+                $idUser = $this->session->userdata("id_user");
+                $namaPer = $this->session->userdata("nama_perusahaan");
+                if($idPerusahaan != NULL){
+                    $displayUser = "none";
+                }
+                else if($idUser != NULL){
+                    $displayPer = "none";
+                }
+                else {
+                    $footerperusahaan = base_url('perusahaan/login_perusahaan');
+                    $footeruser = base_url('login');
+
+                }
+            ?>
+            <div class="col-md" style="display: <?php echo isset($displayPer ) ? $displayPer : "" ?>">
                 <div class="ftco-footer-widget mb-4">
-                    <?php 
-                        $idPerusahaan = $this->session->userdata("id_perusahaan");
-                        if($idPerusahaan == false)
-                            $link = base_url('perusahaan/login_perusahaan');
-                    ?>
                     <h2 class="ftco-heading-2">Employers</h2>
                     <ul class="list-unstyled">
-                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Browse Candidates</a></li>
-                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Post a Job</a></li>
-                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Employer Listing</a></li>
-                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Resume Page</a></li>
-                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Dashboard</a></li>
-                        <li><a href="<?php echo isset($link) ? $link : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Job Packages</a></li>
+                        <li><a href="<?php echo isset($footerperusahaan) ? $footerperusahaan : base_url("perusahaan/kandidat")  ?>" class="pb-1 d-block">Candidate</a></li>
+                        <li><a href="<?php echo isset($footerperusahaan) ? $footerperusahaan : base_url("perusahaan/tambah_lowongan")  ?>" class="pb-1 d-block">Post a Job</a></li>
+                        <li><a href="<?php echo isset($footerperusahaan) ? $footerperusahaan : base_url("perusahaan/profile_perusahaan/index/").$namaPer  ?>" class="pb-1 d-block">Profile</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="col-md">
+            <div class="col-md" style="display: <?php echo isset($displayUser ) ? $displayUser : "" ?>">
                 <div class="ftco-footer-widget mb-4 ml-md-4">
                     <h2 class="ftco-heading-2">Candidate</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="pb-1 d-block">Browse Jobs</a></li>
-                        <li><a href="#" class="pb-1 d-block">Submit Resume</a></li>
-                        <li><a href="#" class="pb-1 d-block">Dashboard</a></li>
-                        <li><a href="#" class="pb-1 d-block">Browse Categories</a></li>
-                        <li><a href="#" class="pb-1 d-block">My Bookmarks</a></li>
-                        <li><a href="#" class="pb-1 d-block">Candidate Listing</a></li>
+                        <li><a href="<?php echo isset($footeruser) ? $footeruser : base_url("lowongan") ?>" class="pb-1 d-block">Lowongan</a></li>
+                        <li><a href="<?php echo isset($footeruser) ? $footeruser : base_url("Profile/lihat_profile/").$idUser ?>" class="pb-1 d-block">Profile</a></li>
+                        <li><a href="<?php echo isset($footeruser) ? $footeruser : base_url("") ?>" class="pb-1 d-block">Dashboard</a></li>
                     </ul>
                 </div>
             </div>

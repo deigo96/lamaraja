@@ -132,4 +132,5 @@
 <script>
     var baseUrl = '<?php echo base_url() ?>';
     var idLowongan = <?php echo $lowongan->id_lowongan ?>;
+    var checkUserProfile = "<?php echo $checkUser ?>";
 </script>

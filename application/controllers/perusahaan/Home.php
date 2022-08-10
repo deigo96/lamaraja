@@ -22,7 +22,7 @@ class Home extends CI_Controller {
             $this->load->view('templates/header');
             $this->load->view('perusahaan/topbar_perusahaan', $data);
             $this->load->view('templates/home', $data);
-            $this->load->view('templates/footer');
+            $this->load->view('templates/footer', $data);
 		}
 		else{
             $this->session->set_flashdata('error', 'Silahkan login');

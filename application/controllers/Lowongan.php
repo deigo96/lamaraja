@@ -46,6 +46,7 @@ class Lowongan extends CI_Controller
 			$id 		= $this->session->userdata('id_user');
 			$userData 	= $this->M_user->getUserData($id);
 
+			$data['checkUser']	= $this->M_user->checkUserProfile($id);
 			$data['checkLamaran']	= $this->M_user->checkLamaran($id, $idLowongan);
 			$data['userData']		= $userData;
 		} else {

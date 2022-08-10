@@ -78,7 +78,14 @@ class Profile extends CI_Controller {
                                 $patholdFoto        = './assets/upload/dokumen/'.$old[$i];
                                 unlink($patholdFoto);
                             }
-                            $updateProfile = $this->M_user->updateProfile($data);
+                            $checkProfile   = $this->M_user->checkProfileUser($id);
+                            if(empty($checkProfile)){
+                                $saveProfile = $this->M_user->saveProfile($data);
+
+                            }else {
+                                $updateProfile = $this->M_user->updateProfile($data);
+                            }
+
                         } else {
                             echo "false";
                         }
@@ -225,6 +232,7 @@ class Profile extends CI_Controller {
         }
 
         $this->load->library('upload');
+        // var_dump($data);
             
         if(empty($this->upload->display_errors())){
             if(empty($checkProfile)){

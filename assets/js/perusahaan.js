@@ -361,7 +361,7 @@ $('#updateProfilePerusahaan').on('submit', function(e){
                     if(data == "true"){
                         Swal.fire(
                             'Berhasil!',
-                            'Lowongan berhasil ditambah.',
+                            'Profile Berhasil di update.',
                             'success'
                         ).then((result) => {
                             location.reload();
@@ -369,7 +369,7 @@ $('#updateProfilePerusahaan').on('submit', function(e){
                         
                     }else{
                         Swal.fire(
-                            'Gagal Menambah Lowongan', 
+                            'Gagal Mengupdate Profile', 
                             '', 
                             'error'
                         )
@@ -377,7 +377,7 @@ $('#updateProfilePerusahaan').on('submit', function(e){
                 },
                 error: function (xhr, ajaxOptions, thrownError) {
                     Swal.fire(
-                        'Gagal Menambah Lowongan', 
+                        'Gagal Mengupdate Profile', 
                         '', 
                         'error'
                     )

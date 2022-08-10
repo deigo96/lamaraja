@@ -191,7 +191,7 @@
                                                         <b><?php echo $lowongan->nama_jabatan ?></b>
                                                     </div>
                                                     <div class="timeline-footer">
-                                                        <a href="#" class="btn btn-warning btn-sm">Read more</a>
+                                                        <!-- <a href="#" class="btn btn-warning btn-sm">Read more</a> -->
                                                         <?php if($lowongan->tanggal_update == 0) { ?>
                                                             <button type="button" href="" onclick="deleteLowongan('<?php echo $lowongan->id_lowongan ?>')" class="btn btn-danger btn-sm">Delete</button>
                                                         <?php } ?>

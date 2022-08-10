@@ -259,4 +259,13 @@ class M_user extends CI_Model {
                                     WHERE proses_lowongan.id_user = '$id'");
         return $query;
     }
+
+    public function checkUserProfile($id)
+    {
+        $this->db->select('profile_users.*');
+        $this->db->from('profile_users');
+        $this->db->join('users', 'profile_users.id_user = users.id_user');
+        $this->db->where('profile_users.id_user', $id);
+        return $this->db->get()->num_rows();
+    }
 }
